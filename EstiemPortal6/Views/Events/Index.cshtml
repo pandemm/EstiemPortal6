@@ -1,5 +1,5 @@
-﻿@model IEnumerable<EstiemPortal6.Models.Event>
-
+﻿@model PagedList.IPagedList<EstiemPortal6.Models.Event>
+@using PagedList.Mvc;
 <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -13,17 +13,14 @@ jQuery(document).ready(function() {
 });
 </script>
 
-@{
-    ViewBag.Title = "Events";
-}
 
 <h2>Events</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("index", "Events", FormMethod.Get))
 {
     <p>
-        Search Events: @Html.TextBox("searchString")
-        <input type="submit" value="Searc" />
+        Search Events: @Html.TextBox("searchString", ViewBag.CFilter as string)
+        <input type="submit" value="Search" />
     </p>
 }
 
@@ -37,3 +34,9 @@ jQuery(document).ready(function() {
 {
     @Html.Partial("_SingleEvent", item)
 }
+
+
+@*Displays current page and total number of pages*@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
+@*Enables movement between pages Todo: Edit this*@
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Filter = ViewBag.Filter }))

@@ -9,6 +9,7 @@ using EstiemPortal6.Repositories;
 using EstiemPortal6.ViewModels;
 using System.Data.Entity.Core.Objects;
 using System.Threading.Tasks;
+using PagedList;
 
 namespace EstiemPortal6.Controllers
 {
@@ -39,13 +40,21 @@ namespace EstiemPortal6.Controllers
             this.EventRepository = EventRepository;
         }
 
-        public ActionResult Index(string searchString, string Filter)
+        public ActionResult Index(string searchString, string Filter, int? page)
         {
 
             //var events = from s in EventRepository.GetEvents()
             //             select s;
             //IEnumerable<Event> events = new List<Event>();
 
+
+            // If searched, return to first page
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = Filter;
+            
+            ViewBag.Filter = searchString;
             var events = from s in EventRepository.GetEvents()
                            select s;
             if (!String.IsNullOrEmpty(searchString))
@@ -53,7 +62,8 @@ namespace EstiemPortal6.Controllers
                 events = events.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
                                        || s.Place.ToUpper().Contains(searchString.ToUpper()));
             }
-
+            else
+            { 
             switch (Filter)
             {
                 default: //Upcoming events
@@ -75,7 +85,13 @@ namespace EstiemPortal6.Controllers
                              select m;
                     break;
             }
-            return View(events);
+            }
+            ViewBag.searchString = searchString;
+            ViewBag.Filter = Filter;
+            int pageSize = 10;
+            //If page is null, page number is 1
+            int pageNumber = (page ?? 1);
+            return View(events.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Event(int id)
