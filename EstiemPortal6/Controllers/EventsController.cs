@@ -60,7 +60,7 @@ namespace EstiemPortal6.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 events = events.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
-                                       || s.Place.ToUpper().Contains(searchString.ToUpper()));
+                                       || s.Place.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(s => s.StartDate);
             }
             else
             { 
