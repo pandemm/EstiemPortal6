@@ -1,0 +1,61 @@
+﻿@import "Site2.less";
+
+body {
+    padding-bottom: 20px; 
+    font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif; 
+    font-size: 2em;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.menu {
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.navbar {
+    color: #d0d0d0;
+    background-color: rgb(32,94,68);
+    text-align:center;
+    width: 100%;
+    text-decoration: none;
+}
+
+
+
+.event-details2
+{
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+
+.main-logo
+{
+    padding:10px;
+}
+
+ 
+
+
+/* ====== media ====== */
+.media {margin:0px;}
+.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
+.media .img {float:left; margin-right: 10px;}
+.media .img img{display:block;}
+.media .imgExt{float:right; margin-left: 10px;}

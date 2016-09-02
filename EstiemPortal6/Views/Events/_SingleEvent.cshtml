@@ -1,0 +1,32 @@
+﻿@model EstiemPortal6.Models.Event
+
+<div class="media event-box">
+    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/vision.png" />
+    <div class="bd">
+        <div class="event-details1">
+            @Html.DisplayFor(modelItem => Model.Name),
+            @Html.DisplayFor(modelItem => Model.Place)
+
+        </div>
+        <div class="event-details2">
+            @Model.StartDate.ToString("dd.MM.yyyy") to
+            @Model.EndDate.ToString("dd.MM.yyyy")  |
+
+            @if (Model.ApplicationEndDate > DateTime.Today)
+            {
+                <span>Application Open</span>
+            }
+            else
+            {
+                <span>Application Closed</span>
+            }
+        </div>
+    </div>
+
+</div>
+<div class="event-description">
+    @Html.Partial("_Eventinfo", Model)
+    @Html.Raw(Model.Description)
+</div>
+
+

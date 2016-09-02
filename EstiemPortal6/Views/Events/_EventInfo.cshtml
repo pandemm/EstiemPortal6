@@ -1,0 +1,93 @@
+﻿@model EstiemPortal6.Models.Event
+<div class="eventinfobox container">
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_place.png" alt="Local Group" />
+            @Model.Place
+        </div>
+        <div class="col-sm-6">
+            <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_date.png" alt="Date of the event" />
+            Event dates:
+            @Model.StartDate.ToString("dd.MM")
+            to
+            @Model.EndDate.ToString("dd.MM")
+        </div>
+        <div class="col-sm-3">
+            @if(Model.ApplicationEndDate > DateTime.Today)
+            {
+                <a class="btn btn-default">Apply Now</a>
+            }
+            else
+            {
+                <span class="btn btn-default">Application closed</span>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_euro.png" alt="Participation fee" />
+            @Model.ParticipationFee
+        </div>
+        <div class="col-sm-6">
+            <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_application.png" alt="Application period" />
+            Application period:
+            @(Model.ApplicationStartDate.HasValue ? Model.ApplicationStartDate.Value.ToString("dd.MM") : string.Empty)
+            to
+            @(Model.ApplicationEndDate.HasValue ? Model.ApplicationEndDate.Value.ToString("dd.MM") : string.Empty)
+        </div>
+        <div class="col-sm-3">
+            @Html.ActionLink("View Participants", "Participants", "Events", 60, new { @class="btn btn-default"})
+        </div>
+    </div>  
+    <div class="row">
+        <div class="col-sm-3">
+            <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_participants.png" alt="Number of participants" />
+    
+            /
+            @Model.MaxParticipants
+
+        </div>
+        <div class="col-sm-6">
+            <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_cancelation.png" alt="Latest cancellation date" />
+            Cancellation deadline:
+            @(Model.CancellationDeadLine.HasValue ? Model.CancellationDeadLine.Value.ToString("dd.MM") : string.Empty)
+        </div>
+        <div class="col-sm-3">
+                <a href="/Events/Event?id=@Model.Id">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_link.png" alt="YouTube" border="0" />
+                </a>
+            @if (Model.HomePage != null && Model.HomePage != "")
+            {
+                <a href="@Model.HomePage">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_hp.png" alt="HomePage" border="0" />
+                </a>
+            }
+            @if (Model.Email != null && Model.Email != "")
+            {
+                <a href="mailto:@Model.Email">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_mail.png" alt="Email" border="0" />
+                </a>
+            }
+            @if (Model.Facebook != null && Model.Facebook != "")
+            {
+                <a href="@Model.Facebook">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_fb.png" alt="Facebook" border="0" />
+                </a>
+            }
+            @if (Model.Youtube != null && Model.Youtube != "")
+            {
+                <a href="@Model.Youtube">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_yt.png" alt="YouTube" border="0" />
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
