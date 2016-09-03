@@ -32,8 +32,6 @@ namespace EstiemPortal6
         public virtual DbSet<ESTIEM_TeamCategory> ESTIEM_TeamCategory { get; set; }
         public virtual DbSet<ESTIEM_TeamRelation> ESTIEM_TeamRelation { get; set; }
         public virtual DbSet<ESTIEM_UserCompany> ESTIEM_UserCompany { get; set; }
-        public virtual DbSet<EventParticipant> EventParticipants { get; set; }
-        public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EVENTS_Events> EVENTS_Events { get; set; }
         public virtual DbSet<EVENTS_EventType> EVENTS_EventType { get; set; }
         public virtual DbSet<EVENTS_Participants> EVENTS_Participants { get; set; }
@@ -116,7 +114,6 @@ namespace EstiemPortal6
         public virtual DbSet<SERVICE_Settings> SERVICE_Settings { get; set; }
         public virtual DbSet<TAG_Tag> TAG_Tag { get; set; }
         public virtual DbSet<TAG_TagLink> TAG_TagLink { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ALUMNI_EventParticipant> ALUMNI_EventParticipant { get; set; }
         public virtual DbSet<ESTIEM_UserHistory> ESTIEM_UserHistory { get; set; }
         public virtual DbSet<ESTIEM_UserLocalGroupx> ESTIEM_UserLocalGroupx { get; set; }
