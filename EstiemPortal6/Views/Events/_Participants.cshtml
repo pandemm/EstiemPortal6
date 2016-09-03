@@ -1,6 +1,7 @@
-﻿@model IEnumerable<EstiemPortal6.Models.EventParticipants>
+﻿@model IEnumerable<EstiemPortal6.ViewModels.ParticipantsViewModel>
 
 @foreach (var pax in Model)
 {
-    
+    @pax.Name
+    @pax.LocalGroup
 }

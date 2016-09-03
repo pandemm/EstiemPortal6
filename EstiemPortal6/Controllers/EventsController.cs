@@ -100,12 +100,24 @@ namespace EstiemPortal6.Controllers
             return View(ev);
         }
 
-        public ActionResult ViewParticipants(int eventid)
+        public ActionResult _Participants(int eventid)
         {
             var db = new EstiemPortalContext();
             var EventParticipants = from m in db.EventParticipants
+                                    join User in db.Users on m.UserId equals User.Id
+                                    join lg in db.LocalGroups on User.LocalGroupId equals lg.Id
                                     where m.EventId == eventid
-                                    select m;
+                                    select new ParticipantsViewModel()
+                                    {
+                                        Name = User.FirstName + User.LastName,
+                                        LocalGroup  = lg.Name,
+                                        RegistrationStatus = m.RegistrationStatus,
+                                        ApplicationDate = m.RegistrationDate,
+                                        MotivationText = m.MotivationText,
+                                        EventName = m.Event.Name
+
+
+                                    };
             
             return View(EventParticipants);
         }
