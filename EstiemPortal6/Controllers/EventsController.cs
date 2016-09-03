@@ -15,6 +15,7 @@ namespace EstiemPortal6.Controllers
 {
     public class EventsController : Controller
     {
+        
         public ActionResult Inde()
         {
             var db = new EstiemPortalContext();
@@ -39,9 +40,10 @@ namespace EstiemPortal6.Controllers
         {
             this.EventRepository = EventRepository;
         }
-
+            
         public ActionResult Index(string searchString, string Filter, int? page)
         {
+            var db = new EstiemPortalContext();
 
             //var events = from s in EventRepository.GetEvents()
             //             select s;
@@ -55,7 +57,7 @@ namespace EstiemPortal6.Controllers
                 searchString = Filter;
             
             ViewBag.Filter = searchString;
-            var events = from s in EventRepository.GetEvents()
+            var events = from s in db.EVENTS_Events
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -68,19 +70,19 @@ namespace EstiemPortal6.Controllers
             {
                 default: //Upcoming events
                 case "upcoming":
-                    events = from m in EventRepository.GetEvents()                             
+                    events = from m in db.EVENTS_Events                           
                              where m.EndDate > DateTime.Today && m.EventType != 9 && m.EventType != 12 //Ignores Alumni events and exchanges
                              orderby m.StartDate
                              select m;
                     break;
                 case "past":
-                    events = from m in EventRepository.GetEvents()
+                    events = from m in db.EVENTS_Events
                              where m.EndDate < DateTime.Today
                              orderby m.StartDate descending
                              select m;
                     break;
                 case "application_open":
-                    events = from m in EventRepository.GetEvents()
+                    events = from m in db.EVENTS_Events
                              where m.ApplicationEndDate > DateTime.Today && m.RegistrationMode == 0
                              select m;
                     break;
@@ -100,22 +102,22 @@ namespace EstiemPortal6.Controllers
             return View(ev);
         }
 
-        public ActionResult _Participants(int eventid)
+        public ActionResult Participants(int eventid)
         {
+            //Todo: Create exception if no eventid
             var db = new EstiemPortalContext();
-            var EventParticipants = from m in db.EventParticipants
-                                    join User in db.Users on m.UserId equals User.Id
-                                    join lg in db.LocalGroups on User.LocalGroupId equals lg.Id
-                                    where m.EventId == eventid
+            var EventParticipants = from m in db.EVENTS_Participants
+                                    join User in db.PORTAL_ESTIEMUser on m.UserId equals User.UserId
+                                    join lg in db.ESTIEM_LocalGroup on User.LocalGroupId equals lg.Id
+                                    where m.EventID == eventid
                                     select new ParticipantsViewModel()
                                     {
-                                        Name = User.FirstName + User.LastName,
+                                        Name = User.FirstNameEnglish + " " + User.LastNameEnglish,
                                         LocalGroup  = lg.Name,
                                         RegistrationStatus = m.RegistrationStatus,
                                         ApplicationDate = m.RegistrationDate,
                                         MotivationText = m.MotivationText,
-                                        EventName = m.Event.Name
-
+                                        EventName = m.EVENTS_Events.Name
 
                                     };
             

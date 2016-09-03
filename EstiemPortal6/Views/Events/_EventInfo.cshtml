@@ -1,4 +1,4 @@
-﻿@model EstiemPortal6.Models.Event
+﻿@model EstiemPortal6.EVENTS_Events
 <div class="eventinfobox container">
     <div class="row">
         <div class="col-sm-3">
@@ -39,7 +39,7 @@
             @(Model.ApplicationEndDate.HasValue ? Model.ApplicationEndDate.Value.ToString("dd.MM") : string.Empty)
         </div>
         <div class="col-sm-3">
-            @Html.ActionLink("View Participants", "_Participants", "Events", Model.Id, new { @class="btn btn-default"})
+            @Html.ActionLink("View Participants", "Participants", "Events", new { eventid = Model.Id } , new { @class="btn btn-default"})
         </div>
     </div>  
     <div class="row">
@@ -48,16 +48,15 @@
     
             /
             
-            @if (@Model.MaxParticipants != -2147483648)
-            {@Model.MaxParticipants}
+            @if (Model.Maxparticipants < 1000)
+            { @Model.Maxparticipants }
             else
             { <span>N/A</span>}
-
         </div>
         <div class="col-sm-6">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_cancelation.png" alt="Latest cancellation date" />
             Cancellation deadline:
-            @(Model.CancellationDeadLine.HasValue ? Model.CancellationDeadLine.Value.ToString("dd.MM") : string.Empty)
+            @(@Model.RetireDeadline.HasValue ? Model.RetireDeadline.Value.ToString("dd.MM") : string.Empty)
         </div>
         <div class="col-sm-3">
                 <a href="/Events/Event?id=@Model.Id">

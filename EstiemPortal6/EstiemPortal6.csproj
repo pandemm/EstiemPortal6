@@ -208,64 +208,110 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ALUMNI_Event.cs" />
+    <Compile Include="ALUMNI_EventParticipant.cs" />
+    <Compile Include="ApplicationLog.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="CONFIGURATION_Assets.cs" />
+    <Compile Include="CONFIGURATION_Data.cs" />
+    <Compile Include="CONFIGURATION_Keys.cs" />
+    <Compile Include="CONFIGURATION_Scopes.cs" />
+    <Compile Include="CONFIGURATION_Sets.cs" />
+    <Compile Include="CONFIGURATION_Values.cs" />
     <Compile Include="Content\LessTransform.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="EstiemPortal5.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstiemPortal5.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EstiemPortal5.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EstiemPortal5.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EstiemPortal5.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ESTIEM_Group.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTIEM_LocalGroup.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTIEM_RegionLocalGroup.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTIEM_RegionResponsible.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTIEM_TeamCategory.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ESTIEM_TeamRelation.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EVENTS_Events.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EVENTS_EventType.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EVENTS_Participants.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
+    <Compile Include="C__MigrationHistory.cs" />
+    <Compile Include="dtproperty.cs" />
+    <Compile Include="EstiemPortal5CodeFirst.cs" />
+    <Compile Include="ESTIEM_CorporateInfo.cs" />
+    <Compile Include="ESTIEM_Country.cs" />
+    <Compile Include="ESTIEM_Group.cs" />
+    <Compile Include="ESTIEM_LocalGroup.cs" />
+    <Compile Include="ESTIEM_OldUser.cs" />
+    <Compile Include="ESTIEM_RegionLocalGroup.cs" />
+    <Compile Include="ESTIEM_RegionResponsible.cs" />
+    <Compile Include="ESTIEM_TeamCategory.cs" />
+    <Compile Include="ESTIEM_TeamRelation.cs" />
+    <Compile Include="ESTIEM_UserCompany.cs" />
+    <Compile Include="ESTIEM_UserHistory.cs" />
+    <Compile Include="ESTIEM_UserLocalGroupx.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="EventParticipant.cs" />
+    <Compile Include="EVENTS_Events.cs" />
+    <Compile Include="EVENTS_EventType.cs" />
+    <Compile Include="EVENTS_Participants.cs" />
+    <Compile Include="FORUM_AccessMask.cs" />
+    <Compile Include="FORUM_Active.cs" />
+    <Compile Include="FORUM_Attachment.cs" />
+    <Compile Include="FORUM_BannedIP.cs" />
+    <Compile Include="FORUM_BBCode.cs" />
+    <Compile Include="FORUM_Board.cs" />
+    <Compile Include="FORUM_Buddy.cs" />
+    <Compile Include="FORUM_Category.cs" />
+    <Compile Include="FORUM_CheckEmail.cs" />
+    <Compile Include="FORUM_Choice.cs" />
+    <Compile Include="FORUM_EventLog.cs" />
+    <Compile Include="FORUM_Extension.cs" />
+    <Compile Include="FORUM_FavoriteTopic.cs" />
+    <Compile Include="FORUM_Forum.cs" />
+    <Compile Include="FORUM_ForumAccess.cs" />
+    <Compile Include="FORUM_Group.cs" />
+    <Compile Include="FORUM_GroupMedal.cs" />
+    <Compile Include="FORUM_IgnoreUser.cs" />
+    <Compile Include="FORUM_Mail.cs" />
+    <Compile Include="FORUM_Medal.cs" />
+    <Compile Include="FORUM_Message.cs" />
+    <Compile Include="FORUM_MessageHistory.cs" />
+    <Compile Include="FORUM_MessageReported.cs" />
+    <Compile Include="FORUM_MessageReportedAudit.cs" />
+    <Compile Include="FORUM_NntpForum.cs" />
+    <Compile Include="FORUM_NntpServer.cs" />
+    <Compile Include="FORUM_NntpTopic.cs" />
+    <Compile Include="FORUM_PMessage.cs" />
+    <Compile Include="FORUM_Poll.cs" />
+    <Compile Include="FORUM_PollGroupCluster.cs" />
+    <Compile Include="FORUM_PollVote.cs" />
+    <Compile Include="FORUM_prov_Application.cs" />
+    <Compile Include="FORUM_prov_Membership.cs" />
+    <Compile Include="FORUM_prov_Profile.cs" />
+    <Compile Include="FORUM_prov_Role.cs" />
+    <Compile Include="FORUM_prov_RoleMembership.cs" />
+    <Compile Include="FORUM_Rank.cs" />
+    <Compile Include="FORUM_Registry.cs" />
+    <Compile Include="FORUM_Replace_Words.cs" />
+    <Compile Include="FORUM_ShoutboxMessage.cs" />
+    <Compile Include="FORUM_Smiley.cs" />
+    <Compile Include="FORUM_Thanks.cs" />
+    <Compile Include="FORUM_Topic.cs" />
+    <Compile Include="FORUM_User.cs" />
+    <Compile Include="FORUM_UserAlbum.cs" />
+    <Compile Include="FORUM_UserAlbumImage.cs" />
+    <Compile Include="FORUM_UserForum.cs" />
+    <Compile Include="FORUM_UserMedal.cs" />
+    <Compile Include="FORUM_UserPMessage.cs" />
+    <Compile Include="FORUM_WatchForum.cs" />
+    <Compile Include="FORUM_WatchTopic.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HTML_HtmlModule.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
+    <Compile Include="HTML_HtmlModule.cs" />
+    <Compile Include="HTML_HtmlModuleAudit.cs" />
+    <Compile Include="IST_Attachment.cs" />
+    <Compile Include="IST_Category.cs" />
+    <Compile Include="IST_Issue.cs" />
+    <Compile Include="IST_Release.cs" />
+    <Compile Include="IST_Subscription.cs" />
+    <Compile Include="IST_Ticket.cs" />
+    <Compile Include="IST_TicketModules.cs" />
+    <Compile Include="LOGREPORT_IgnorableItems.cs" />
+    <Compile Include="LOGREPORT_PageInterpreter.cs" />
     <Compile Include="Migrations\201609010953339_Reset.cs" />
     <Compile Include="Migrations\201609010953339_Reset.Designer.cs">
       <DependentUpon>201609010953339_Reset.cs</DependentUpon>
@@ -281,34 +327,44 @@
     <Compile Include="Models\LocalGroup.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="NEWS_Category.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NEWS_News.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NEWS_Newsletter.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NEWS_NewsletterNews.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NEWS_NewsletterTemplate.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PORTAL_ESTIEMUser.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PORTAL_Role.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PORTAL_User.cs">
-      <DependentUpon>EstiemPortal5.tt</DependentUpon>
-    </Compile>
+    <Compile Include="NEWS_Category.cs" />
+    <Compile Include="NEWS_News.cs" />
+    <Compile Include="NEWS_Newsletter.cs" />
+    <Compile Include="NEWS_NewsletterNews.cs" />
+    <Compile Include="NEWS_NewsletterTemplate.cs" />
+    <Compile Include="ObjectAccessRight.cs" />
+    <Compile Include="PORTAL_ActionValidation.cs" />
+    <Compile Include="PORTAL_CustomPageProperties.cs" />
+    <Compile Include="PORTAL_DeletionLog.cs" />
+    <Compile Include="PORTAL_ESTIEMAlumniUser.cs" />
+    <Compile Include="PORTAL_ESTIEMUser.cs" />
+    <Compile Include="PORTAL_Module.cs" />
+    <Compile Include="PORTAL_ModuleAudit.cs" />
+    <Compile Include="PORTAL_ModuleDefinition.cs" />
+    <Compile Include="PORTAL_ModuleDefinitionType.cs" />
+    <Compile Include="PORTAL_ModuleRolePermission.cs" />
+    <Compile Include="PORTAL_Page.cs" />
+    <Compile Include="PORTAL_PageModule.cs" />
+    <Compile Include="PORTAL_PageRolePermission.cs" />
+    <Compile Include="PORTAL_Portal.cs" />
+    <Compile Include="PORTAL_PortalUser.cs" />
+    <Compile Include="PORTAL_Role.cs" />
+    <Compile Include="PORTAL_RoleExternalMember.cs" />
+    <Compile Include="PORTAL_UrlAlias.cs" />
+    <Compile Include="PORTAL_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EventRepository.cs" />
     <Compile Include="Repositories\IEventRepository.cs" />
+    <Compile Include="SEARCH_SearchLog.cs" />
+    <Compile Include="SERVICE_Log.cs" />
+    <Compile Include="SERVICE_Settings.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="STAT_EVENTS_Participants.cs" />
+    <Compile Include="sysdiagram.cs" />
+    <Compile Include="TAG_Tag.cs" />
+    <Compile Include="TAG_TagLink.cs" />
+    <Compile Include="TRIPADVISOR_Advises.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\ParticipantsViewModel.cs" />
   </ItemGroup>
@@ -316,16 +372,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="EstiemPortal5.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EstiemPortal5.edmx</DependentUpon>
-      <LastGenOutput>EstiemPortal5.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="EstiemPortal5.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EstiemPortal5.edmx</DependentUpon>
-      <LastGenOutput>EstiemPortal5.cs</LastGenOutput>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
@@ -336,13 +382,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Site2.less" />
-    <EntityDeploy Include="EstiemPortal5.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EstiemPortal5.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="EstiemPortal5.edmx.diagram">
-      <DependentUpon>EstiemPortal5.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\LAssi.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -383,7 +422,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Events\_EventInfo.cshtml" />
-    <Content Include="Views\Events\_Participants.cshtml" />
+    <Content Include="Views\Events\Participants.cshtml" />
     <Content Include="Views\Events\Event.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_SingleEvent.cshtml" />

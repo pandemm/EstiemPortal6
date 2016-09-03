@@ -6,7 +6,7 @@ using System.Web;
 
 namespace EstiemPortal6.Models
 {
-    public class EstiemPortalContext : DbContext
+    public partial class EstiemPortalContext : DbContext
     {
         public EstiemPortalContext() : base("name=EP6")
         {
