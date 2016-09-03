@@ -15,5 +15,20 @@ namespace EstiemPortal6.ViewModels
         public string MotivationText { get; set; }
         public string EventName { get; set; }
 
+
+
     }
+    public enum Registration
+    {
+        Registered,
+        Waiting,
+        Canceled,
+        CanceledAfterDeadLine,
+        DidNotShowUp,
+        Organizer,
+        ApplicationWithdrawn
+    }
+
+
+
 }

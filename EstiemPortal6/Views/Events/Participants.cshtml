@@ -2,7 +2,7 @@
 
 
 <h2>Participants of @Model.First().EventName</h2>
-
+Todo: Make columns sortable
 <div class="row">
     <div class="col-sm-3">
         Name
@@ -27,8 +27,32 @@
             @pax.LocalGroup
         </div>
         <div class="col-sm-3">
-            @pax.RegistrationStatus
-        </div>
+            @switch (pax.RegistrationStatus)
+            {
+                case 0:
+                    <span>Registered</span>
+                    break;
+                case 1:
+                    <span>Waiting </span>
+                    break;
+                case 2:
+                    <span>Canceled </span>
+                    break;
+                case 3:
+                    <span>CanceledAfterDeadLine </span>
+                    break;
+                case 4:
+                    <span>DidNotShowUp </span>
+                    break;
+                case 5:
+                    <span>Organizer </span>
+                    break;
+                case 6:
+                    <span>ApplicationWithdrawn </span>
+                    break;
+            }
+
+</div>
         <div class="col-sm-3">
             @pax.ApplicationDate
         </div>
