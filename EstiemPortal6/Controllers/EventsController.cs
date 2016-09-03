@@ -82,7 +82,7 @@ namespace EstiemPortal6.Controllers
         }
 
 
-        public ActionResult Participants(int eventid)
+        public ActionResult Participants(int eventid, string sortOrder)
         {
             //Todo: Create exception if no eventid
             var db = new EstiemPortalContext();
@@ -100,7 +100,40 @@ namespace EstiemPortal6.Controllers
                                         EventName = m.EVENTS_Events.Name
 
                                     };
-            
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.LGSort = sortOrder == "lg" ? "lg_desc" : "lg";
+            ViewBag.RegSort = sortOrder == "reg" ? "reg_desc" : "reg";
+            ViewBag.AppSort = sortOrder == "app" ? "app_desc" : "app";
+
+            switch (sortOrder)
+            {
+                default:
+                case "name":
+                    EventParticipants = EventParticipants.OrderBy(s => s.Name);
+                    break;
+                case "name_desc":
+                    EventParticipants = EventParticipants.OrderByDescending(s => s.Name);
+                    break;
+                case "lg":
+                    EventParticipants = EventParticipants.OrderBy(s => s.LocalGroup);
+                    break;
+                case "lg_desc":
+                    EventParticipants = EventParticipants.OrderByDescending(s => s.LocalGroup);
+                    break;
+                case "reg":
+                    EventParticipants = EventParticipants.OrderBy(s => s.RegistrationStatus);
+                    break;
+                case "reg_desc":
+                    EventParticipants = EventParticipants.OrderByDescending(s => s.RegistrationStatus);
+                    break;
+                case "app":
+                    EventParticipants = EventParticipants.OrderBy(s => s.ApplicationDate);
+                    break;
+                case "app_desc":
+                    EventParticipants = EventParticipants.OrderByDescending(s => s.ApplicationDate);
+                    break;
+            }
+            ViewBag.Id = eventid;
             return View(EventParticipants);
         }
 

@@ -2,19 +2,18 @@
 
 
 <h2>Participants of @Model.First().EventName</h2>
-Todo: Make columns sortable
 <div class="row">
     <div class="col-sm-3">
-        Name
+        @Html.ActionLink("Name", "Participants", new {  eventid=(int)ViewBag.Id, sortorder = ViewBag.NameSort})
     </div>
     <div class="col-sm-3">
-        Local Group
+        @Html.ActionLink("Local Group", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.LGSort })
     </div>
     <div class="col-sm-3">
-       Registration Status
+        @Html.ActionLink("Registration Status", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.RegSort })
     </div>
     <div class="col-sm-3">
-        Application Date
+        @Html.ActionLink("Application Date", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.AppSort })
     </div>
 </div>
 @foreach (var pax in Model)
