@@ -8,9 +8,9 @@
         <div class="col-sm-6">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_date.png" alt="Date of the event" />
             Event dates:
-            @Model.StartDate
+            @Model.StartDate.ToString("dd.MM")
             to
-            @Model.EndDate
+            @Model.EndDate.ToString("dd.MM")
         </div>
         <div class="col-sm-3">
             @if(Model.ApplicationEndDate > DateTime.Today)
@@ -48,7 +48,7 @@
     
             /
             
-            @if (Model.MaxParticipants < 1000)
+            @if (Model.MaxParticipants < 1000 && Model.MaxParticipants > 0)
             { @Model.MaxParticipants }
             else
             { <span>N/A</span>}

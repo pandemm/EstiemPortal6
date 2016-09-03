@@ -9,8 +9,8 @@
                 
         </div>
         <div class="event-details2">
-            @Model.StartDate to
-            @Model.EndDate  |
+            @Model.StartDate.ToString("dd.MM.yyyy") to
+            @Model.EndDate.ToString("dd.MM.yyyy")  |
 
             @if (Model.ApplicationEndDate > DateTime.Today)
             {
