@@ -1,4 +1,4 @@
-﻿@model EstiemPortal6.EVENTS_Events
+﻿@model EstiemPortal6.ViewModels.EventViewModel
 <div class="eventinfobox container">
     <div class="row">
         <div class="col-sm-3">
@@ -8,9 +8,9 @@
         <div class="col-sm-6">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_date.png" alt="Date of the event" />
             Event dates:
-            @Model.StartDate.ToString("dd.MM")
+            @Model.StartDate
             to
-            @Model.EndDate.ToString("dd.MM")
+            @Model.EndDate
         </div>
         <div class="col-sm-3">
             @if(Model.ApplicationEndDate > DateTime.Today)
@@ -39,7 +39,7 @@
             @(Model.ApplicationEndDate.HasValue ? Model.ApplicationEndDate.Value.ToString("dd.MM") : string.Empty)
         </div>
         <div class="col-sm-3">
-            @Html.ActionLink("View Participants", "Participants", "Events", new { eventid = Model.Id } , new { @class="btn btn-default"})
+            @Html.ActionLink("View Participants", "Participants", "Events", new { eventid = Model.EventId } , new { @class="btn btn-default"})
         </div>
     </div>  
     <div class="row">
@@ -48,18 +48,18 @@
     
             /
             
-            @if (Model.Maxparticipants < 1000)
-            { @Model.Maxparticipants }
+            @if (Model.MaxParticipants < 1000)
+            { @Model.MaxParticipants }
             else
             { <span>N/A</span>}
         </div>
         <div class="col-sm-6">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_cancelation.png" alt="Latest cancellation date" />
             Cancellation deadline:
-            @(@Model.RetireDeadline.HasValue ? Model.RetireDeadline.Value.ToString("dd.MM") : string.Empty)
+            @(@Model.CancellationDate.HasValue ? Model.CancellationDate.Value.ToString("dd.MM") : string.Empty)
         </div>
         <div class="col-sm-3">
-                <a href="/Events/Event?id=@Model.Id">
+                <a href="/Events/Event?id=@Model.EventId">
                     <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_link.png" alt="YouTube" border="0" />
                 </a>
             @if (Model.HomePage != null && Model.HomePage != "")

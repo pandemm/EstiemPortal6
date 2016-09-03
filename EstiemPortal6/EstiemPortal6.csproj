@@ -229,7 +229,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="C__MigrationHistory.cs" />
     <Compile Include="DAL\dtproperty.cs" />
-    <Compile Include="EstiemPortal5CodeFirst.cs" />
+    <Compile Include="DAL\EstiemPortal5CodeFirst.cs" />
     <Compile Include="DAL\ESTIEM_CorporateInfo.cs" />
     <Compile Include="DAL\ESTIEM_Country.cs" />
     <Compile Include="DAL\ESTIEM_Group.cs" />
@@ -242,8 +242,6 @@
     <Compile Include="DAL\ESTIEM_UserCompany.cs" />
     <Compile Include="DAL\ESTIEM_UserHistory.cs" />
     <Compile Include="DAL\ESTIEM_UserLocalGroupx.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventParticipant.cs" />
     <Compile Include="DAL\EVENTS_Events.cs" />
     <Compile Include="DAL\EVENTS_EventType.cs" />
     <Compile Include="DAL\EVENTS_Participants.cs" />
@@ -301,17 +299,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HTML_HtmlModule.cs" />
-    <Compile Include="HTML_HtmlModuleAudit.cs" />
-    <Compile Include="IST_Attachment.cs" />
-    <Compile Include="IST_Category.cs" />
-    <Compile Include="IST_Issue.cs" />
-    <Compile Include="IST_Release.cs" />
-    <Compile Include="IST_Subscription.cs" />
-    <Compile Include="IST_Ticket.cs" />
-    <Compile Include="IST_TicketModules.cs" />
-    <Compile Include="LOGREPORT_IgnorableItems.cs" />
-    <Compile Include="LOGREPORT_PageInterpreter.cs" />
+    <Compile Include="DAL\HTML_HtmlModule.cs" />
+    <Compile Include="DAL\HTML_HtmlModuleAudit.cs" />
+    <Compile Include="DAL\IST_Attachment.cs" />
+    <Compile Include="DAL\IST_Category.cs" />
+    <Compile Include="DAL\IST_Issue.cs" />
+    <Compile Include="DAL\IST_Release.cs" />
+    <Compile Include="DAL\IST_Subscription.cs" />
+    <Compile Include="DAL\IST_Ticket.cs" />
+    <Compile Include="DAL\IST_TicketModules.cs" />
+    <Compile Include="DAL\LOGREPORT_IgnorableItems.cs" />
+    <Compile Include="DAL\LOGREPORT_PageInterpreter.cs" />
     <Compile Include="Migrations\201609010953339_Reset.cs" />
     <Compile Include="Migrations\201609010953339_Reset.Designer.cs">
       <DependentUpon>201609010953339_Reset.cs</DependentUpon>
@@ -327,46 +325,44 @@
     <Compile Include="Models\LocalGroup.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="NEWS_Category.cs" />
-    <Compile Include="NEWS_News.cs" />
-    <Compile Include="NEWS_Newsletter.cs" />
-    <Compile Include="NEWS_NewsletterNews.cs" />
-    <Compile Include="NEWS_NewsletterTemplate.cs" />
+    <Compile Include="DAL\NEWS_Category.cs" />
+    <Compile Include="DAL\NEWS_News.cs" />
+    <Compile Include="DAL\NEWS_Newsletter.cs" />
+    <Compile Include="DAL\NEWS_NewsletterNews.cs" />
+    <Compile Include="DAL\NEWS_NewsletterTemplate.cs" />
     <Compile Include="ObjectAccessRight.cs" />
-    <Compile Include="PORTAL_ActionValidation.cs" />
-    <Compile Include="PORTAL_CustomPageProperties.cs" />
-    <Compile Include="PORTAL_DeletionLog.cs" />
-    <Compile Include="PORTAL_ESTIEMAlumniUser.cs" />
-    <Compile Include="PORTAL_ESTIEMUser.cs" />
-    <Compile Include="PORTAL_Module.cs" />
-    <Compile Include="PORTAL_ModuleAudit.cs" />
-    <Compile Include="PORTAL_ModuleDefinition.cs" />
-    <Compile Include="PORTAL_ModuleDefinitionType.cs" />
-    <Compile Include="PORTAL_ModuleRolePermission.cs" />
-    <Compile Include="PORTAL_Page.cs" />
-    <Compile Include="PORTAL_PageModule.cs" />
-    <Compile Include="PORTAL_PageRolePermission.cs" />
-    <Compile Include="PORTAL_Portal.cs" />
-    <Compile Include="PORTAL_PortalUser.cs" />
-    <Compile Include="PORTAL_Role.cs" />
-    <Compile Include="PORTAL_RoleExternalMember.cs" />
-    <Compile Include="PORTAL_UrlAlias.cs" />
-    <Compile Include="PORTAL_User.cs" />
+    <Compile Include="DAL\PORTAL_ActionValidation.cs" />
+    <Compile Include="DAL\PORTAL_CustomPageProperties.cs" />
+    <Compile Include="DAL\PORTAL_DeletionLog.cs" />
+    <Compile Include="DAL\PORTAL_ESTIEMAlumniUser.cs" />
+    <Compile Include="DAL\PORTAL_ESTIEMUser.cs" />
+    <Compile Include="DAL\PORTAL_Module.cs" />
+    <Compile Include="DAL\PORTAL_ModuleAudit.cs" />
+    <Compile Include="DAL\PORTAL_ModuleDefinition.cs" />
+    <Compile Include="DAL\PORTAL_ModuleDefinitionType.cs" />
+    <Compile Include="DAL\PORTAL_ModuleRolePermission.cs" />
+    <Compile Include="DAL\PORTAL_Page.cs" />
+    <Compile Include="DAL\PORTAL_PageModule.cs" />
+    <Compile Include="DAL\PORTAL_PageRolePermission.cs" />
+    <Compile Include="DAL\PORTAL_Portal.cs" />
+    <Compile Include="DAL\PORTAL_PortalUser.cs" />
+    <Compile Include="DAL\PORTAL_Role.cs" />
+    <Compile Include="DAL\PORTAL_RoleExternalMember.cs" />
+    <Compile Include="DAL\PORTAL_UrlAlias.cs" />
+    <Compile Include="DAL\PORTAL_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EventRepository.cs" />
-    <Compile Include="Repositories\IEventRepository.cs" />
-    <Compile Include="SEARCH_SearchLog.cs" />
-    <Compile Include="SERVICE_Log.cs" />
-    <Compile Include="SERVICE_Settings.cs" />
+    <Compile Include="DAL\SEARCH_SearchLog.cs" />
+    <Compile Include="DAL\SERVICE_Log.cs" />
+    <Compile Include="DAL\SERVICE_Settings.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="STAT_EVENTS_Participants.cs" />
+    <Compile Include="DAL\STAT_EVENTS_Participants.cs" />
     <Compile Include="sysdiagram.cs" />
-    <Compile Include="TAG_Tag.cs" />
-    <Compile Include="TAG_TagLink.cs" />
-    <Compile Include="TRIPADVISOR_Advises.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="DAL\TAG_Tag.cs" />
+    <Compile Include="DAL\TAG_TagLink.cs" />
+    <Compile Include="DAL\TRIPADVISOR_Advises.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\ParticipantsViewModel.cs" />
+    <Compile Include="ViewModels\TripAdvisorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -404,7 +400,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -426,7 +421,7 @@
     <Content Include="Views\Events\Event.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Events\_SingleEvent.cshtml" />
-    <Content Include="Views\Events\Inde.cshtml" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

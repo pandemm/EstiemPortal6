@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using EstiemPortal6.Models;
-using EstiemPortal6.Repositories;
 using EstiemPortal6.ViewModels;
 using System.Data.Entity.Core.Objects;
 using System.Threading.Tasks;
@@ -14,54 +13,39 @@ using PagedList;
 namespace EstiemPortal6.Controllers
 {
     public class EventsController : Controller
-    {
-        
-        public ActionResult Inde()
-        {
-            var db = new EstiemPortalContext();
-            var Events = from m in db.Events
-                         where m.EndDate > DateTime.Today && m.EventType != 9 && m.EventType != 12 //Ignores Alumni events and exchanges
-                         orderby m.StartDate
-                         select m;
-
-            return View(Events);
-        }
-
-
-        //Repository shit starts
-        private IEventRepository EventRepository;
-
-        public EventsController()
-        {
-            this.EventRepository = new EventRepository(new EstiemPortalContext());
-        }
-
-        public EventsController(IEventRepository EventRepository)
-        {
-            this.EventRepository = EventRepository;
-        }
-            
+    {      
         public ActionResult Index(string searchString, string Filter, int? page)
         {
             var db = new EstiemPortalContext();
 
-            //var events = from s in EventRepository.GetEvents()
-            //             select s;
-            //IEnumerable<Event> events = new List<Event>();
-
-
-            // If searched, return to first page
             if (searchString != null)
                 page = 1;
-            else
-                searchString = Filter;
-            
-            ViewBag.Filter = searchString;
-            var events = from s in db.EVENTS_Events
-                           select s;
+
+            var evvm = from m in db.EVENTS_Events
+                       orderby m.StartDate
+                       select new EventViewModel()
+                       {
+                           EventId = m.Id,
+                           Name = m.Name,
+                           Description = m.Description,
+                           StartDate = m.StartDate,
+                           EndDate = m.EndDate,
+                           ApplicationStartDate = m.ApplicationStartDate,
+                           ApplicationEndDate = m.ApplicationEndDate,
+                           Place = m.Place,
+                           ParticipationFee = m.ParticipationFee,
+                           MaxParticipants = m.Maxparticipants,
+                           CancellationDate = m.RetireDeadline,
+                           HomePage = m.HomePage,
+                           Facebook = m.Facebook,
+                           Email = m.Email,
+                           EventType = m.EventType,
+                           RegistrationMode = m.RegistrationMode
+                       };
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                events = events.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
+                evvm = evvm.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
                                        || s.Place.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(s => s.StartDate);
             }
             else
@@ -70,20 +54,21 @@ namespace EstiemPortal6.Controllers
             {
                 default: //Upcoming events
                 case "upcoming":
-                    events = from m in db.EVENTS_Events                           
+                    evvm = from m in evvm                       
                              where m.EndDate > DateTime.Today && m.EventType != 9 && m.EventType != 12 //Ignores Alumni events and exchanges
                              orderby m.StartDate
                              select m;
                     break;
                 case "past":
-                    events = from m in db.EVENTS_Events
+                    evvm = from m in evvm
                              where m.EndDate < DateTime.Today
                              orderby m.StartDate descending
                              select m;
                     break;
                 case "application_open":
-                    events = from m in db.EVENTS_Events
+                    evvm = from m in evvm
                              where m.ApplicationEndDate > DateTime.Today && m.RegistrationMode == 0
+                             orderby m.StartDate
                              select m;
                     break;
             }
@@ -93,14 +78,9 @@ namespace EstiemPortal6.Controllers
             int pageSize = 10;
             //If page is null, page number is 1
             int pageNumber = (page ?? 1);
-            return View(events.ToPagedList(pageNumber, pageSize));
+            return View(evvm.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Event(int id)
-        {
-            Event ev = EventRepository.GetEvent(id);
-            return View(ev);
-        }
 
         public ActionResult Participants(int eventid)
         {
@@ -123,5 +103,33 @@ namespace EstiemPortal6.Controllers
             
             return View(EventParticipants);
         }
+
+        public ActionResult Event(int id)
+        {
+            var db = new EstiemPortalContext();
+            var evvm = from m in db.EVENTS_Events
+                       where m.Id == id
+                       select new EventViewModel()
+                       {
+                           EventId = m.Id,
+                           Name = m.Name,
+                           Description = m.Description,
+                           StartDate = m.StartDate,
+                           EndDate = m.EndDate,
+                           ApplicationStartDate = m.ApplicationStartDate,
+                           ApplicationEndDate = m.ApplicationEndDate,
+                           Place = m.Place,
+                           ParticipationFee = m.ParticipationFee,
+                           MaxParticipants = m.Maxparticipants,
+                           CancellationDate = m.RetireDeadline,
+                           HomePage = m.HomePage,
+                           Facebook = m.Facebook,
+                           Email = m.Email,
+                           EventType = m.EventType,
+                           Youtube = m.Youtube
+                       };
+            return View(evvm);
+        }
+
     }
 }

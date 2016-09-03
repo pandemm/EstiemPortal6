@@ -1,4 +1,4 @@
-﻿@model EVENTS_Events
+﻿@model EstiemPortal6.ViewModels.EventViewModel
 
 <div class="media event-box">
     <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/vision.png" />
@@ -6,11 +6,11 @@
         <div class="event-details1">
             @Html.DisplayFor(modelItem => Model.Name),
             @Html.DisplayFor(modelItem => Model.Place)
-
+                
         </div>
         <div class="event-details2">
-            @Model.StartDate.ToString("dd.MM.yyyy") to
-            @Model.EndDate.ToString("dd.MM.yyyy")  |
+            @Model.StartDate to
+            @Model.EndDate  |
 
             @if (Model.ApplicationEndDate > DateTime.Today)
             {

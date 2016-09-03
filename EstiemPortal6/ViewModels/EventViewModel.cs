@@ -14,13 +14,16 @@ namespace EstiemPortal6.ViewModels
         public DateTime? ApplicationStartDate { get; set; }
         public DateTime? ApplicationEndDate { get; set; }
         public string Place { get; set; }
-        public int ParticipationFee { get; set; }
-        public int MaxParticipants { get; set; }
+        public string Description { get; set; }
+        public int? ParticipationFee { get; set; }
+        public int? MaxParticipants { get; set; }
+        public int? RegistrationMode { get; set; }
         public DateTime? CancellationDate { get; set; }
-        public int NumberOfRegistered { get; set; }
-        public int EventCategory { get; set; }
+        public int? NumberOfRegistered { get; set; }
+        public int EventType { get; set; }
         public string HomePage { get; set; }
         public string Facebook { get; set; }
         public string Email { get; set; }
+        public string Youtube { get; set; }
     }
 }
