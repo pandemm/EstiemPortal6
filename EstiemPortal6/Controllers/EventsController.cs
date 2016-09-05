@@ -13,6 +13,7 @@ using Omu.ValueInjecter;
 
 namespace EstiemPortal6.Controllers
 {
+    [Authorize]
     public class EventsController : Controller
     {      
         public ActionResult Index(string searchString, string Filter, int? page)
