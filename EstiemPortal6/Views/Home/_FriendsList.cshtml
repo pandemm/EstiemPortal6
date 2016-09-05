@@ -1,0 +1,10 @@
+﻿@model IQueryable<EstiemPortal6.ViewModels.FriendsViewModel>
+
+@foreach (var item in Model)
+{
+    <div>
+        @item.Name applied for
+        @item.EventName
+    </div>
+}
+

@@ -21,7 +21,7 @@ namespace EstiemPortal6.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("EP6")
+            : base("EP5")
         {
         }
 

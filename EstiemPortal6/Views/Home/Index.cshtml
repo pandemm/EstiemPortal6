@@ -2,6 +2,10 @@
     ViewBag.Title = "Home Page";
 }
 
-Work in Progress
 
-Go check out events first
+<div class="event-preview">
+@{ Html.RenderAction("_EventShort"); }
+   
+@{ Html.RenderAction("_FriendsList"); }
+
+</div>

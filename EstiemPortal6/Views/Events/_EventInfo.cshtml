@@ -45,9 +45,8 @@
     <div class="row">
         <div class="col-sm-3">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_participants.png" alt="Number of participants" />
-    
+            @Model.NumberOfRegistered
             /
-            
             @if (Model.MaxParticipants < 1000 && Model.MaxParticipants > 0)
             { @Model.MaxParticipants }
             else

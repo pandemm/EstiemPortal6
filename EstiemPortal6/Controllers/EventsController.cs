@@ -9,6 +9,7 @@ using EstiemPortal6.ViewModels;
 using System.Data.Entity.Core.Objects;
 using System.Threading.Tasks;
 using PagedList;
+using Omu.ValueInjecter;
 
 namespace EstiemPortal6.Controllers
 {
@@ -40,7 +41,8 @@ namespace EstiemPortal6.Controllers
                            Facebook = m.Facebook,
                            Email = m.Email,
                            EventType = m.EventType,
-                           RegistrationMode = m.RegistrationMode
+                           RegistrationMode = m.RegistrationMode,
+                           NumberOfRegistered = (from s in db.EVENTS_Participants where s.RegistrationStatus==0 && s.EventID == m.Id  select s.UserId).Count()                     
                        };
 
             if (!String.IsNullOrEmpty(searchString))
@@ -98,7 +100,7 @@ namespace EstiemPortal6.Controllers
                                         ApplicationDate = m.RegistrationDate,
                                         MotivationText = m.MotivationText,
                                         EventName = m.EVENTS_Events.Name
-
+                                        
                                     };
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.LGSort = sortOrder == "lg" ? "lg_desc" : "lg";
@@ -162,6 +164,27 @@ namespace EstiemPortal6.Controllers
                            Youtube = m.Youtube
                        };
             return View(evvm);
+        }
+
+        public ActionResult Application(int eventid)
+        {
+            var db = new EstiemPortalContext();
+            var pvm = from m in db.EVENTS_Participants
+                                    join User in db.PORTAL_ESTIEMUser on m.UserId equals User.UserId
+                                    join lg in db.ESTIEM_LocalGroup on User.LocalGroupId equals lg.Id
+                                    where m.EventID == eventid
+                                    select new ParticipantsViewModel()
+                                    {
+                                        Name = User.FirstNameEnglish + " " + User.LastNameEnglish,
+                                        LocalGroup = lg.Name,
+                                        RegistrationStatus = m.RegistrationStatus,
+                                        ApplicationDate = m.RegistrationDate,
+                                        MotivationText = m.MotivationText,
+                                        EventName = m.EVENTS_Events.Name
+
+                                    };
+
+            return View(pvm);
         }
 
     }

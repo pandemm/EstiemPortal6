@@ -1,0 +1,24 @@
+﻿@model IQueryable<EstiemPortal6.ViewModels.EventViewModel>
+
+
+@foreach (var ev in Model)
+{
+    <div class="event-details1">
+        @ev.Name,
+        @ev.Place
+
+    </div>
+        <div class="event-details2">
+            @ev.StartDate.ToString("dd.MM.yyyy")
+            @ev.EndDate.ToString("dd.MM.yyyy")  |
+
+            @if (ev.ApplicationEndDate > DateTime.Today)
+            {
+                <span>Application Open</span>
+            }
+            else
+            {
+                <span>Application Closed</span>
+            }
+        </div>
+}
