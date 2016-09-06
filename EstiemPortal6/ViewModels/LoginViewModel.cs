@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace EstiemPortal6.ViewModels
+namespace EstiemPortal6.Models
 {
         public class LoginViewModel
         {

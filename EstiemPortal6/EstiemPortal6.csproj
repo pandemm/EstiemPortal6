@@ -370,6 +370,7 @@
     <Compile Include="ViewModels\AutoMapperViewModelConfiguration.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\FriendsViewModel.cs" />
+    <Compile Include="ViewModels\IdentityViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ParticipantsViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
