@@ -4,8 +4,13 @@
 
 
 <div class="event-preview">
-@{ Html.RenderAction("_EventShort"); }
-   
-@{ Html.RenderAction("_FriendsList"); }
+    <div class="col-md-6">
+        <h2>Upcoming Events</h2>
+        @{ Html.RenderAction("_EventShort"); }
+    </div>
+    <div class="col-md-6">
+        <h2>Your Network</h2>
+        @{ Html.RenderAction("_FriendsList"); }
+    </div>
 
 </div>

@@ -2,12 +2,16 @@
 
 
 @foreach (var ev in Model)
-{
-    <div class="event-details1">
-        @ev.Name,
-        @ev.Place
 
-    </div>
+{
+    <div class="event-front-page">
+        <div class="event-details1">
+            <b>
+            @ev.Name,
+            @ev.Place
+        </b>
+
+        </div>
         <div class="event-details2">
             @ev.StartDate.ToString("dd.MM.yyyy")
             @ev.EndDate.ToString("dd.MM.yyyy")  |
@@ -21,4 +25,5 @@
                 <span>Application Closed</span>
             }
         </div>
+    </div>
 }

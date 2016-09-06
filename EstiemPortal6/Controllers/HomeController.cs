@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using EstiemPortal6.ViewModels;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using EstiemPortal6.Models;
 
 namespace EstiemPortal6.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -35,6 +36,12 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult _FriendsList()
         {
+            OnAuthenticateRequest();
+            var asd = User.Identity;
+            var aasd = HttpContext.User.Identity.GetUserId();
+            bool isauth = HttpContext.User.Identity.IsAuthenticated;
+            string UserName = User.Identity.Name;
+            int userid = Int32.Parse(User.Identity.GetUserId());
             int UserId = 15545;
             var db = new EstiemPortalContext();
             var evs = from m in db.EVENTS_Participants
@@ -45,8 +52,12 @@ namespace EstiemPortal6.Controllers
                           where evs.Contains(m.EventID)
                           select m.UserId;
 
+            var ownlg = from e in db.PORTAL_ESTIEMUser
+                        where e.LocalGroupId == userid
+                        select e.UserId;
+
             var fvm = (from m in db.EVENTS_Participants
-                      where friends.Contains(m.UserId)
+                      where friends.Contains(m.UserId) || ownlg.Contains(m.UserId)
                       orderby m.RegistrationDate descending
                       select new FriendsViewModel
                       {
@@ -56,5 +67,11 @@ namespace EstiemPortal6.Controllers
                       }).Take(15);
             return PartialView(fvm);
         }
+
+        public void OnAuthenticateRequest()
+        {
+            HttpCookie identityCookie = Request.Cookies[".ASPXAUTH"];
+        }
+
     }
 }

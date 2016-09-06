@@ -1,9 +1,7 @@
 ﻿@import "Site2.less";
 
 body {
-    padding-bottom: 20px; 
     font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif; 
-    font-size: 2em;
 }
 
 /* Set padding to keep content from hitting the edges */

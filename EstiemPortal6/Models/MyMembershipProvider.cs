@@ -134,7 +134,7 @@ namespace EstiemPortal6.Models
             if (user == null) return false;
             if (user.Password == hash)
             {
-                User = user;
+                HttpContext.Current.User = user;
                 return true;
             }
             return false;
