@@ -3,9 +3,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Text;
 
 namespace EstiemPortal6.Models
 {
+    // This needs to be updated. I need to add the definitions for my own DB.
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
@@ -21,7 +23,7 @@ namespace EstiemPortal6.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("EP5")
+            : base("EP6")
         {
         }
 
@@ -30,7 +32,7 @@ namespace EstiemPortal6.Models
             return new ApplicationDbContext();
         }
 
-        public virtual IDbSet<ApplicationUser> User { get; set; }
+        //public virtual IDbSet<ApplicationUser> User { get; set; }
 
     }
 }

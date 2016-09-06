@@ -212,7 +212,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\GlobalConfigurationModule.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="DAL\ALUMNI_Event.cs" />
     <Compile Include="DAL\ALUMNI_EventParticipant.cs" />
@@ -320,9 +319,9 @@
     <Compile Include="Migrations\201609010953339_Reset.Designer.cs">
       <DependentUpon>201609010953339_Reset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\MyMembershipProvider.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EstiemPortalContext.cs" />
     <Compile Include="Models\EventParticipants.cs" />
@@ -367,11 +366,8 @@
     <Compile Include="DAL\TAG_TagLink.cs" />
     <Compile Include="DAL\TRIPADVISOR_Advises.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
-    <Compile Include="ViewModels\AutoMapperViewModelConfiguration.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\FriendsViewModel.cs" />
-    <Compile Include="ViewModels\IdentityViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ParticipantsViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\TripAdvisorViewModel.cs" />

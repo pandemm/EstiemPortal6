@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using EstiemPortal6.Models;
+using System.Text;
 
 namespace EstiemPortal6
 {
@@ -23,13 +24,38 @@ namespace EstiemPortal6
         }
     }
 
+    public class EstiemPasswordHasher : PasswordHasher
+    {
+        public override string HashPassword(string password)
+        {
+            if (password == null)
+            {
+                throw new ArgumentNullException(nameof(password));
+            }
+            // The old Estiem Portal first creates an md5 hash of the password and then converts it to base64 string.
+            // The first line is copypasted from the web, not sure if it applies for us currently
+            byte[] pwdBytes = Encoding.GetEncoding(1252).GetBytes(password);
+            byte[] hashBytes = System.Security.Cryptography.MD5.Create().ComputeHash(pwdBytes);
+            string PassWordHash = Convert.ToBase64String(hashBytes);
+            return PassWordHash;
+        }
+
+        public override PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword)
+        {
+            string ProvidedHashed = HashPassword(providedPassword);
+            return hashedPassword.Equals(ProvidedHashed) ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed;
+        }
+    }
+
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
+            PasswordHasher = new EstiemPasswordHasher();
         }
+
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
@@ -41,6 +67,7 @@ namespace EstiemPortal6
                 RequireUniqueEmail = true
             };
 
+            
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {

@@ -36,13 +36,13 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult _FriendsList()
         {
-            OnAuthenticateRequest();
-            var asd = User.Identity;
-            var aasd = HttpContext.User.Identity.GetUserId();
-            bool isauth = HttpContext.User.Identity.IsAuthenticated;
-            string UserName = User.Identity.Name;
-            int userid = Int32.Parse(User.Identity.GetUserId());
-            int UserId = 15545;
+            //OnAuthenticateRequest();
+            //var asd = User.Identity;
+            //var aasd = HttpContext.User.Identity.GetUserId();
+            //bool isauth = HttpContext.User.Identity.IsAuthenticated;
+            //string UserName = User.Identity.Name;
+            //int userid = Int32.Parse(User.Identity.GetUserId());
+            int UserId = Int32.Parse(User.Identity.GetUserId());
             var db = new EstiemPortalContext();
             var evs = from m in db.EVENTS_Participants
                       where m.UserId == UserId
@@ -53,7 +53,7 @@ namespace EstiemPortal6.Controllers
                           select m.UserId;
 
             var ownlg = from e in db.PORTAL_ESTIEMUser
-                        where e.LocalGroupId == userid
+                        where e.LocalGroupId == UserId
                         select e.UserId;
 
             var fvm = (from m in db.EVENTS_Participants
@@ -68,10 +68,10 @@ namespace EstiemPortal6.Controllers
             return PartialView(fvm);
         }
 
-        public void OnAuthenticateRequest()
-        {
-            HttpCookie identityCookie = Request.Cookies[".ASPXAUTH"];
-        }
+        //public void OnAuthenticateRequest()
+        //{
+        //    HttpCookie identityCookie = Request.Cookies[".ASPXAUTH"];
+        //}
 
     }
 }
