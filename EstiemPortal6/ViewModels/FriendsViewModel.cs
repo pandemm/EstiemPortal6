@@ -10,6 +10,7 @@ namespace EstiemPortal6.ViewModels
         public int UserId { get; set; }
         public string Name { get; set; }
         public ICollection<EVENTS_Participants> Friends { get; set; }
-        public string EventName { get; set; }
+        public string EventName { get; set; }         
+        public int EventId { get; set; }
     }
 }

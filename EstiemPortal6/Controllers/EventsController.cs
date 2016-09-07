@@ -23,6 +23,7 @@ namespace EstiemPortal6.Controllers
                 page = 1;
 
             var evvm = from m in db.EVENTS_Events
+                       where m.EventType != 12 || m.EventType != 9
                        orderby m.StartDate
                        select new EventViewModel()
                        {
