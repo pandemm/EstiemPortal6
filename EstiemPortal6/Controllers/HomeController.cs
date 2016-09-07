@@ -20,8 +20,8 @@ namespace EstiemPortal6.Controllers
         {
             var db = new EstiemPortalContext();
             var evvm = (from m in db.EVENTS_Events
-                       where m.EventType != 12 || m.EventType != 9
-                       orderby m.ApplicationEndDate descending
+                       where (m.EventType != 12 || m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
+                       orderby m.ApplicationEndDate
                        select new EventViewModel()
                        {
                            EventId = m.Id,

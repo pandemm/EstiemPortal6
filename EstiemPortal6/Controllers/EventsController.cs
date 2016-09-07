@@ -143,7 +143,7 @@ namespace EstiemPortal6.Controllers
         public ActionResult Event(int id)
         {
             var db = new EstiemPortalContext();
-            var evvm = from m in db.EVENTS_Events
+            var evvm = (from m in db.EVENTS_Events
                        where m.Id == id
                        select new EventViewModel()
                        {
@@ -163,7 +163,7 @@ namespace EstiemPortal6.Controllers
                            Email = m.Email,
                            EventType = m.EventType,
                            Youtube = m.Youtube
-                       };
+                       }).Single();
             return View(evvm);
         }
 

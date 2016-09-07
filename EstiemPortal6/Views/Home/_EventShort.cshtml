@@ -5,10 +5,9 @@
 
 {
     <div class="event-front-page">
-        <div class="event-details1">
+        <div>
             <b>
-            @ev.Name,
-            @ev.Place
+            @Html.ActionLink(@ev.Name + ", " + @ev.Place, "Event", "Events", new { Id = @ev.EventId }, new { @class = "event-details1" })
         </b>
 
         </div>

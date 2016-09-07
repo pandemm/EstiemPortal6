@@ -7,11 +7,11 @@ Controller is home controller, as the home page is currently the only place wher
 *@
 @foreach (var item in Model)
 {
-    <div class="friendslist">
-        @Html.ActionLink(@item.Name, "Profile", new { Id = @item.UserId })
-        <b>@item.Name</b> applied for
-        @Html.ActionLink(@item.Name, "_SingleEvent", "Events", new { Id = @item.EventId })
-        <b>@item.EventName</b>
+    <div>
+        <b>@Html.ActionLink(@item.Name, "Profile", new { Id = @item.UserId }, new { @class = "friendslist" })</b>
+    applied for
+        <b>@Html.ActionLink(@item.EventName, "Event", "Events", new { Id = @item.EventId }, new { @class = "friendslist" })</b>
+        
     </div>
 }
 
