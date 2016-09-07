@@ -9,7 +9,6 @@ using EstiemPortal6.ViewModels;
 using System.Data.Entity.Core.Objects;
 using System.Threading.Tasks;
 using PagedList;
-using Omu.ValueInjecter;
 
 namespace EstiemPortal6.Controllers
 {
