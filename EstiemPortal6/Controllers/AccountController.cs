@@ -12,9 +12,14 @@ using EstiemPortal6.Models;
 
 namespace EstiemPortal6.Controllers
 {
+
+    // This controller is used for logging in related tasks. 
+    // In the future registering new accounts can also be implemented here.
     [Authorize]
     public class AccountController : Controller
     {
+
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -22,6 +27,10 @@ namespace EstiemPortal6.Controllers
         {
         }
 
+
+        // The UserManager has a custom PasswordHasher to support legacy passwords from EP5.
+        // In case we give up EP5, remove the custom Hasher to get more secure passwords.
+        // If we use default password hasher think through how to implement it with the existing user base.
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
@@ -53,8 +62,8 @@ namespace EstiemPortal6.Controllers
             }
         }
 
-        //
-        // GET: /Account/Login
+        // This returns the View when you first go to the login page.
+        // 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -62,13 +71,15 @@ namespace EstiemPortal6.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Login
+        // This task gets Post actions from the login, and does the actual logging in part.
+        // 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
+            // Not sure if this actually makes a difference but I guess it's good to have here.
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -76,6 +87,7 @@ namespace EstiemPortal6.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+            // This is default ASP.NET Login code. Some cases that are not used in ESTIEM can be removed.
             var result = await SignInManager.PasswordSignInAsync(model.Name, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -95,8 +107,8 @@ namespace EstiemPortal6.Controllers
 
 
 
-        //
-        // GET: /Account/Register
+        // Todo: Default ASP.NET code. Not used yet, but Registering new users should be added.
+        // Note that registration in ESTIEM is not open to the public.
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -104,8 +116,8 @@ namespace EstiemPortal6.Controllers
         }
 
 
-        //
-        // GET: /Account/ConfirmEmail
+        // Todo: Not used yet, but confirming emails should be added.
+        // 
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -117,8 +129,8 @@ namespace EstiemPortal6.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
-        // GET: /Account/ForgotPassword
+        // Todo: Not used yet but should be added
+        // 
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -127,16 +139,15 @@ namespace EstiemPortal6.Controllers
 
 
 
-        //
-        // GET: /Account/ResetPassword
+        // Todo: Not used yet but should be added.
+        // 
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
         }
 
-        //
-        // POST: /Account/ResetPassword
+        // Todo: Not used yet but should be added.
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -162,7 +173,7 @@ namespace EstiemPortal6.Controllers
         }
 
         //
-        // GET: /Account/ResetPasswordConfirmation
+        // Todo: Not used yet but should be added.
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
@@ -170,7 +181,7 @@ namespace EstiemPortal6.Controllers
         }
 
         //
-        // POST: /Account/ExternalLogin
+        // Todo: Not used yet but should be added.
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -182,7 +193,7 @@ namespace EstiemPortal6.Controllers
 
 
         //
-        // POST: /Account/LogOff
+        // Todo: Not used yet but should be added.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -191,14 +202,7 @@ namespace EstiemPortal6.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return View();
-        }
-
+        // Not exactly sure what the following does, however I guess it's some kind of garbage collecting.
         protected override void Dispose(bool disposing)
         {
             if (disposing)

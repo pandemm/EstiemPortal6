@@ -15,15 +15,14 @@ namespace EstiemPortal6.Controllers
 {
     public class EventsController : Controller
     {      
+        // Returns the default page with events.
+        // Todo: Search works however paging should keep the search.
         public ActionResult Index(string searchString, string Filter, int? page)
         {
             var db = new EstiemPortalContext();
 
-            if (searchString != null)
-                page = 1;
-
             var evvm = from m in db.EVENTS_Events
-                       where m.EventType != 12 || m.EventType != 9
+                       where m.EventType != 12 || m.EventType != 9 // Gets all events that are not alumni events or exchanges.
                        orderby m.StartDate
                        select new EventViewModel()
                        {
@@ -58,7 +57,7 @@ namespace EstiemPortal6.Controllers
                 default: //Upcoming events
                 case "upcoming":
                     evvm = from m in evvm                       
-                             where m.EndDate > DateTime.Today && m.EventType != 9 && m.EventType != 12 //Ignores Alumni events and exchanges
+                             where m.EndDate > DateTime.Today
                              orderby m.StartDate
                              select m;
                     break;

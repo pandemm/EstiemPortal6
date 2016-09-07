@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
 @using (Html.BeginForm("index", "Events", FormMethod.Get))
 {
     <p>
-        Search Events: @Html.TextBox("searchString", ViewBag.CFilter as string)
+        Search Events: @Html.TextBox("searchString", ViewBag.searchString as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -39,4 +39,4 @@ jQuery(document).ready(function() {
 @*Displays current page and total number of pages*@
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
 @*Enables movement between pages Todo: Edit this*@
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Filter = ViewBag.Filter }))
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, Filter = ViewBag.Filter, searchString = ViewBag.searchString }))
