@@ -1,0 +1,60 @@
+﻿@model EstiemPortal6.ViewModels.ProfileViewModel
+
+<h2>@Model.Name</h2>
+
+
+<div class="myprofile">
+    <div class="col-sm-6">
+        <img src="@Url.Content("https://www.estiem.org/userimage.aspx?id=" + @Model.UserId)" />
+    </div>
+
+
+    <div class="col-sm-6">
+        <ul>
+
+            <li>
+                Birthday:
+                @(@Model.BirthDay.HasValue ? Model.BirthDay.Value.ToString("dd.MM.yyyy") : string.Empty)
+            </li>
+
+            <li>
+                Local Group:
+                @Model.LocalGroup
+            </li>
+
+            <li>
+                Mobile Phone:
+            </li>
+
+            <li>
+                Facebook:
+            </li>
+
+            <li>
+                Skype:
+            </li>
+            <li>
+                Snapchat:
+            </li>
+            <li>
+                Instagram:
+            </li>
+        </ul>
+    </div>
+</div>
+
+@foreach (var item in Model.AttendedEvents)
+{
+    <div class="profile-events">
+            <div class="col-sm-6">
+                @item.Name
+            </div>
+            <div class="col-sm-3">
+                @item.Place
+            </div>
+            <div class="col-sm-3">
+                @item.StartDate.ToString("dd.MM.yyyy") -
+                @item.EndDate.ToString("dd.MM.yyyy")    
+            </div>
+        </div>
+}

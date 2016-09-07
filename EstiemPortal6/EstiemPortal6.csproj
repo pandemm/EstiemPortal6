@@ -433,10 +433,10 @@
     <Content Include="Views\Events\Application.cshtml" />
     <Content Include="Views\Home\_EventShort.cshtml" />
     <Content Include="Views\Home\_FriendsList.cshtml" />
+    <Content Include="Views\Profile\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

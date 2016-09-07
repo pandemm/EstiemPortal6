@@ -4,23 +4,23 @@
 <h2>Participants of @Model.First().EventName</h2>
 <div class="row">
     <div class="col-sm-3">
-        @Html.ActionLink("Name", "Participants", new {  eventid=(int)ViewBag.Id, sortorder = ViewBag.NameSort})
+        <b>@Html.ActionLink("Name", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.NameSort }, new { @class = "greentext" })</b>
     </div>
     <div class="col-sm-3">
-        @Html.ActionLink("Local Group", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.LGSort })
+        <b>@Html.ActionLink("Local Group", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.LGSort }, new { @class = "greentext" })</b>
     </div>
     <div class="col-sm-3">
-        @Html.ActionLink("Registration Status", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.RegSort })
+        <b>@Html.ActionLink("Registration Status", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.RegSort }, new { @class = "greentext" })</b>
     </div>
     <div class="col-sm-3">
-        @Html.ActionLink("Application Date", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.AppSort })
+        <b>@Html.ActionLink("Application Date", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.AppSort }, new { @class = "greentext" })</b>
     </div>
 </div>
 @foreach (var pax in Model)
 {
     <div class="row">
         <div class="col-sm-3">
-            @pax.Name
+            @Html.ActionLink(@pax.Name, "Profile", new { Id = @pax.UserId }, new { style="color:black;" })
         </div>
         <div class="col-sm-3">
             @pax.LocalGroup

@@ -176,6 +176,7 @@ namespace EstiemPortal6.Controllers
                                     where m.EventID == eventid
                                     select new ParticipantsViewModel()
                                     {
+                                        UserId = User.UserId,
                                         Name = User.FirstNameEnglish + " " + User.LastNameEnglish,
                                         LocalGroup = lg.Name,
                                         RegistrationStatus = m.RegistrationStatus,
