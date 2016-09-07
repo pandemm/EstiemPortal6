@@ -45,7 +45,7 @@ namespace EstiemPortal6.Controllers
                            NumberOfRegistered = (from s in db.EVENTS_Participants where s.RegistrationStatus==0 && s.EventID == m.Id  select s.UserId).Count()                     
                        };
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 evvm = evvm.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
                                        || s.Place.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(s => s.StartDate);

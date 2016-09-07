@@ -16,19 +16,19 @@ jQuery(document).ready(function() {
 
 <h2>Events</h2>
 
-@using (Html.BeginForm("index", "Events", FormMethod.Get))
-{
-    <p>
-        Search Events: @Html.TextBox("searchString", ViewBag.searchString as string)
-        <input type="submit" value="Search" />
-    </p>
-}
-
+<div class="text-center">
+    @using (Html.BeginForm("index", "Events", FormMethod.Get))
+    {
+        <p>
+            Search Events: @Html.TextBox("searchString", ViewBag.searchString as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
 
 @Html.ActionLink("Upcoming Events", "Index", "Events", new { Filter = "upcoming" }, new { @class = "btn btn-default"})
 @Html.ActionLink("Past Events", "Index", "Events", new { Filter = "past" }, new { @class = "btn btn-default" })
 @Html.ActionLink("Application Open", "Index", "Events", new { Filter = "application_open" }, new { @class = "btn btn-default" })
-
+</div>
 
 @foreach (var item in Model)
 {
