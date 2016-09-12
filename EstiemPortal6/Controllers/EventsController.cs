@@ -9,6 +9,8 @@ using EstiemPortal6.ViewModels;
 using System.Data.Entity.Core.Objects;
 using System.Threading.Tasks;
 using PagedList;
+using Microsoft.AspNet.Identity;
+using System.Net.Mail;
 
 namespace EstiemPortal6.Controllers
 {
@@ -167,24 +169,84 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult Application(int eventid)
         {
+            
             var db = new EstiemPortalContext();
-            var pvm = from m in db.EVENTS_Participants
-                                    join User in db.PORTAL_ESTIEMUser on m.UserId equals User.UserId
-                                    join lg in db.ESTIEM_LocalGroup on User.LocalGroupId equals lg.Id
-                                    where m.EventID == eventid
-                                    select new ParticipantsViewModel()
-                                    {
-                                        UserId = User.UserId,
-                                        Name = User.FirstNameEnglish + " " + User.LastNameEnglish,
-                                        LocalGroup = lg.Name,
-                                        RegistrationStatus = m.RegistrationStatus,
-                                        ApplicationDate = m.RegistrationDate,
-                                        MotivationText = m.MotivationText,
-                                        EventName = m.EVENTS_Events.Name
+            //var pvm = (from m in db.EVENTS_Participants
+            //                        join User in db.PORTAL_ESTIEMUser on m.UserId equals User.UserId
+            //                        join lg in db.ESTIEM_LocalGroup on User.LocalGroupId equals lg.Id
+            //                        where m.EventID == eventid
+            //                        select new ParticipantsViewModel()
+            //                        {
+            //                            UserId = User.UserId,
+            //                            Name = User.FirstNameEnglish + " " + User.LastNameEnglish,
+            //                            LocalGroup = lg.Name,
+            //                            RegistrationStatus = m.RegistrationStatus,
+            //                            ApplicationDate = m.RegistrationDate,
+            //                            MotivationText = m.MotivationText,
+            //                            EventName = m.EVENTS_Events.Name
 
-                                    };
+            //                        }).FirstOrDefault();
+
+            var pvm = new ParticipantsViewModel();
+
+            pvm = (from m in db.EVENTS_Events
+                       where m.Id == eventid
+                       select new ParticipantsViewModel()
+                       {
+                           EventName = m.Name,
+                           ApplicationEndDate= m.ApplicationEndDate,
+                           RegistrationMode = m.RegistrationMode,
+                           Vegetarian = null,
+                           EatPork = null,
+                           RequireVisa = null
+                         }).FirstOrDefault();
+            pvm.UserId = Int32.Parse(User.Identity.GetUserId());
+
+
+            // If registration is not open currently, or registrationmode is not open to public
+            // redirect to the events page
+            if (pvm.ApplicationEndDate < DateTime.Now || pvm.RegistrationMode != 0)
+                Response.Redirect("~/Events/Index");
 
             return View(pvm);
+        }
+        [HttpPost]
+        public ActionResult Application(ParticipantsViewModel pvm)
+        {
+            // Add the application to the database
+            var db = new EstiemPortalContext();
+            var evp = new EVENTS_Participants {
+                UserId = pvm.UserId,
+                EventID = pvm.EventId,
+                RegistrationDate = DateTime.Now,
+                RegistrationStatus = 1, // RegistrationStatus 1 means waiting, which is default when applying.
+                Comments = "",
+                CmStatus = 0,
+                MotivationText = pvm.MotivationText,
+                Vegetarian = pvm.Vegetarian,
+                NoPork = pvm.EatPork,
+                VisaRequired = pvm.RequireVisa
+            };
+            db.EVENTS_Participants.Add(evp);
+            db.SaveChanges();
+            //// TODO: Send email to the participant. Figure out where to get credentials for smtp server
+            //MailMessage mailObj = new MailMessage();
+            //mailObj.From = new MailAddress("lassi.uosukainen@gmail.com");
+            //mailObj.Subject = "email";
+            //mailObj.Body = "application stuff";
+            //mailObj.To.Add(new MailAddress("lassi.uosukainen@estiem.org"));
+            //mailObj.IsBodyHtml = true;
+
+            //SmtpClient objSmtp = new SmtpClient();
+            //objSmtp.Host = "smtp.gmail.com";
+            //objSmtp.Port = 25;
+            //objSmtp.UseDefaultCredentials = false;
+            //objSmtp.Credentials = new System.Net.NetworkCredential("username", "password");
+            //objSmtp.EnableSsl = true;
+            //objSmtp.Send(mailObj);
+
+            Response.Redirect("~/Events/Index");
+            return View();
         }
 
     }

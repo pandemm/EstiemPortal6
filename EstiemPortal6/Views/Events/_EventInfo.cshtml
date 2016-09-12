@@ -13,14 +13,6 @@
             @Model.EndDate.ToString("dd.MM")
         </div>
         <div class="col-sm-3">
-            @if(Model.ApplicationEndDate > DateTime.Today)
-            {
-                <a class="btn btn-default">Apply Now</a>
-            }
-            else
-            {
-                <span class="btn btn-default">Application closed</span>
-            }
         </div>
     </div>
     <div class="row">

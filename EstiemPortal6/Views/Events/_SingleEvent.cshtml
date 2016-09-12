@@ -50,6 +50,16 @@
             {
                 <span>Application Closed</span>
             }
+            <div class="apply-now">
+                @if (Model.ApplicationEndDate > DateTime.Today)
+            {
+                    @Html.ActionLink("Apply Now", "Application", new { eventid = Model.EventId }, new { @class = "btn btn-default" })
+                }
+                else
+                {
+                    <span class="btn btn-default">Application closed</span>
+                }
+            </div>
         </div>
     </div>
 

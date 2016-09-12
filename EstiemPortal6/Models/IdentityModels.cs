@@ -16,6 +16,10 @@ namespace EstiemPortal6.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("LocalGroup", "Tampere"));
+            userIdentity.AddClaim(new Claim("Name", "Lassi Uosukainen"));
+
+
             return userIdentity;
         }
     }
