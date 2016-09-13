@@ -13,6 +13,14 @@
             @Model.EndDate.ToString("dd.MM")
         </div>
         <div class="col-sm-3">
+                @if (Model.ApplicationEndDate > DateTime.Today)
+            {
+                    @Html.ActionLink("Apply Now", "Application", new { eventid = Model.EventId }, new { @class = "btn btn-default" })
+                }
+                else
+                {
+                    <span class="btn btn-default">Application closed</span>
+                }
         </div>
     </div>
     <div class="row">

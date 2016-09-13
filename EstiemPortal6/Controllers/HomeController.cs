@@ -20,7 +20,7 @@ namespace EstiemPortal6.Controllers
         {
             var db = new EstiemPortalContext();
             var evvm = (from m in db.EVENTS_Events
-                       where (m.EventType != 12 || m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
+                       where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
                        orderby m.ApplicationEndDate
                        select new EventViewModel()
                        {
@@ -31,7 +31,7 @@ namespace EstiemPortal6.Controllers
                            ApplicationStartDate = m.ApplicationStartDate,
                            ApplicationEndDate = m.ApplicationEndDate,
                            Place = m.Place,
-                       }).Take(5);
+                       }).Take(6);
             return PartialView(evvm);
         }
 

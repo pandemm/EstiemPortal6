@@ -10,10 +10,7 @@
 
 </head>
 <body>
-    <div class="main-menu">
-        <section id="login">
-            Hello, <span class="username">@User.Identity.Name</span>!
-        </section>
+    <div class="main-menu navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header main-logo">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -38,7 +35,7 @@
         @RenderBody()
         <hr />
     </div>
-    <div class="footer">
+    @*<div class="footer">
         <div style="float: none;">
             <div style="padding-left:20px;">
                 <p>
@@ -58,7 +55,7 @@
             </div>
 
         </div>
-    </div>  
+    </div>*@  
     
 
     @Scripts.Render("~/bundles/jquery")

@@ -1,13 +1,13 @@
 ﻿@model IQueryable<EstiemPortal6.ViewModels.FriendsViewModel>
 
 @*
-This view creates the list of recent application on your front page. It has it's own Viewmodel FriendsViewModel.    
+This view creates the list of recent applications on your front page. It has it's own Viewmodel FriendsViewModel.    
 Can also be considered to add registrations, and events that start that your friends attend to the controller.
 Controller is home controller, as the home page is currently the only place where this module is.
 *@
 @foreach (var item in Model)
 {
-    <div>
+    <div style="text-overflow:ellipsis;  overflow:hidden; white-space:nowrap; ">
         <b>@Html.ActionLink(@item.Name, "Profile", new { Id = @item.UserId }, new { @class = "friendslist" })</b>
     applied for
         <b>@Html.ActionLink(@item.EventName, "Event", "Events", new { Id = @item.EventId }, new { @class = "friendslist" })</b>

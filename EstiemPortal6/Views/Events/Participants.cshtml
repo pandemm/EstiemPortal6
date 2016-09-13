@@ -2,30 +2,30 @@
 
 
 <h2>Participants of @Model.First().EventName</h2>
-<div class="row">
-    <div class="col-sm-3">
+<div class="row greentext">
+    <div class="col-xs-3">
         <b>@Html.ActionLink("Name", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.NameSort }, new { @class = "greentext" })</b>
     </div>
-    <div class="col-sm-3">
+    <div class="col-xs-3">
         <b>@Html.ActionLink("Local Group", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.LGSort }, new { @class = "greentext" })</b>
     </div>
-    <div class="col-sm-3">
+    <div class="col-xs-3">
         <b>@Html.ActionLink("Registration Status", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.RegSort }, new { @class = "greentext" })</b>
     </div>
-    <div class="col-sm-3">
+    <div class="col-xs-3">
         <b>@Html.ActionLink("Application Date", "Participants", new { eventid = (int)ViewBag.Id, sortorder = ViewBag.AppSort }, new { @class = "greentext" })</b>
     </div>
 </div>
 @foreach (var pax in Model)
 {
-    <div class="row">
-        <div class="col-sm-3">
-            @Html.ActionLink(@pax.Name, "Profile", new { Id = @pax.UserId }, new { style="color:black;" })
+    <div class="row" style="padding:5px;">
+        <div class="col-xs-3">
+            @Html.ActionLink(@pax.Name, "Profile", new { userid = @pax.UserId }, new { style="color:black;" })
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             @pax.LocalGroup
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             @switch (pax.RegistrationStatus)
             {
                 case 0:
@@ -38,7 +38,7 @@
                     <span>Canceled </span>
                     break;
                 case 3:
-                    <span>CanceledAfterDeadLine </span>
+                    <span>Canceled Late </span>
                     break;
                 case 4:
                     <span>DidNotShowUp </span>
@@ -47,13 +47,13 @@
                     <span>Organizer </span>
                     break;
                 case 6:
-                    <span>ApplicationWithdrawn </span>
+                    <span>Withdrawn </span>
                     break;
             }
 
 </div>
-        <div class="col-sm-3">
-            @pax.ApplicationDate
+        <div class="col-xs-3">
+            @pax.ApplicationDate.ToString("dd.MM.yyyy")
         </div>
     </div>
 }
