@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <div class="main-menu">
+    <div class="main-menu navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header main-logo">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,7 +26,6 @@
                 <ul class="nav navbar-nav">
                     <li class="main-menu">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="main-menu">@Html.ActionLink("Events", "Index", "Events")</li>
-                    <li class="main-menu"><a href="http://wiki.estiem.org/wiki/index.php">Wiki</a></li>
                     <li class="main-menu">@Html.ActionLink("My Profile", "MyProfile", "Profile")</li>
                 </ul>
             </div>
@@ -36,9 +35,27 @@
         @RenderBody()
         <hr />
     </div>
-        <div class="footer">
-            <p>This is the footer. Here we can have company logos for example.</p>
+    @*<div class="footer">
+        <div style="float: none;">
+            <div style="padding-left:20px;">
+                <p>
+                    Our Partners:
+                </p>
+            </div>
+            <div class="sponsors">
+                <a href="https://www.beiersdorf.com/career/students-and-graduates">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/BDF_Logo.jpg" alt="Beiersdorf" />
+                </a>
+                <a href="https://www.efaqt.com/Estiem">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/efaqt.png" alt="eFaqt" />
+                </a>
+                <a href="http://www.storaenso.com/">
+                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/Stora Enso.png" alt="Stora Enso" />
+                </a>
+            </div>
+
         </div>
+    </div>*@  
     
 
     @Scripts.Render("~/bundles/jquery")

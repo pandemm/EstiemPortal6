@@ -46,14 +46,14 @@
 @foreach (var item in Model.AttendedEvents)
 {
     <div class="profile-events">
-            <div class="col-sm-6">
-                @item.Name
+            <div class="col-xs-6">
+                @Html.ActionLink(item.Name, "Event", "Events", new { id = item.Id}, new { })
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-3">
                 @item.Place
             </div>
-            <div class="col-sm-3">
-                @item.StartDate.ToString("dd.MM.yyyy") -
+            <div class="col-xs-3">
+                @item.StartDate.ToString("dd.MM.yyyy")-
                 @item.EndDate.ToString("dd.MM.yyyy")    
             </div>
         </div>

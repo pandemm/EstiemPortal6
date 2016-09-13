@@ -7,17 +7,18 @@
     <div class="event-front-page">
         <div>
             <b>
-            @Html.ActionLink(@ev.Name + ", " + @ev.Place, "Event", "Events", new { Id = @ev.EventId }, new { @class = "event-details1" })
-        </b>
+                @Html.ActionLink(@ev.Name + ", " + @ev.Place, "Event", "Events", new { Id = @ev.EventId }, new { @class = "event-details1" })
+            </b>
 
         </div>
         <div class="event-details2">
-            @ev.StartDate.ToString("dd.MM.yyyy")
+            @ev.StartDate.ToString("dd.MM.yyyy") - 
             @ev.EndDate.ToString("dd.MM.yyyy")  |
 
-            @if (ev.ApplicationEndDate > DateTime.Today)
+            @if (ev.ApplicationEndDate > DateTime.Today && ev.ApplicationEndDate != null)
             {
-                <span>Application Open</span>
+                @ev.ApplicationEndDate.Value.Date.Subtract(DateTime.Now.Date).ToString("%d")
+                <span> days left to apply</span>
             }
             else
             {

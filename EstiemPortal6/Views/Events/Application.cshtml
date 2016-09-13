@@ -1,10 +1,24 @@
-﻿@Model EstiemPortal6.ViewModels.ParticipantsViewModel
+﻿@model EstiemPortal6.ViewModels.ParticipantsViewModel
 
-
-@{
-    ViewBag.Title = "Application";
-}
 
 <h2>Apply for @Model.EventName</h2>
 
-@Html.Partial("_Eventinfo")
+@using (Html.BeginForm("Application", "Events", FormMethod.Post))
+{
+    <fieldset>
+        @Html.LabelFor(model => model.Vegetarian)<br />
+        <label>@Html.RadioButton("Vegetarian", true, new { @required = true })Yes</label>
+        <label>@Html.RadioButton("Vegetarian", false, new { @required = true })No</label><br />
+        @Html.LabelFor(model => model.EatPork)<br />
+        <label>@Html.RadioButton("EatPork", true, new { @required = true })Yes</label>
+        <label>@Html.RadioButton("EatPork", false, new { @required = true })No</label><br />
+        @Html.LabelFor(model => model.RequireVisa)<br />
+        <label>@Html.RadioButton("RequireVisa", true, new { @required = true })Yes</label>
+        <label>@Html.RadioButton("RequireVisa", false, new { @required = true })No</label><br />
+        @Html.LabelFor(model => model.MotivationText)<br />
+        @Html.TextArea("MotivationText", new { @required = true, style = "width: 90%; height: 100px;" })<br />  
+        @Html.HiddenFor(model => Model.UserId); 
+        @Html.HiddenFor(model => Model.EventId);
+        <input type="submit" value="Apply" />
+    </fieldset>
+}
