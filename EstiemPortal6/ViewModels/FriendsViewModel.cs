@@ -13,4 +13,10 @@ namespace EstiemPortal6.ViewModels
         public string EventName { get; set; }         
         public int EventId { get; set; }
     }
+
+    public class MainMenuViewModel
+    {
+        public int UserId { get; set; }
+        public string Name { get; set; }
+    }
 }

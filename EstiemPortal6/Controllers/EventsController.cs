@@ -14,6 +14,7 @@ using System.Net.Mail;
 
 namespace EstiemPortal6.Controllers
 {
+    [Authorize]
     public class EventsController : Controller
     {      
         // Returns the default page with events.
@@ -23,7 +24,7 @@ namespace EstiemPortal6.Controllers
             var db = new EstiemPortalContext();
 
             var evvm = from m in db.EVENTS_Events
-                       where m.EventType != 12 || m.EventType != 9 // Gets all events that are not alumni events or exchanges.
+                       where m.EventType != 12 && m.EventType != 9 // Gets all events that are not alumni events or exchanges.
                        orderby m.StartDate
                        select new EventViewModel()
                        {
@@ -162,7 +163,8 @@ namespace EstiemPortal6.Controllers
                            Facebook = m.Facebook,
                            Email = m.Email,
                            EventType = m.EventType,
-                           Youtube = m.Youtube
+                           Youtube = m.Youtube,
+                           NumberOfRegistered = (from s in db.EVENTS_Participants where s.RegistrationStatus == 0 && s.EventID == m.Id select s.UserId).Count()
                        }).Single();
             return View(evvm);
         }

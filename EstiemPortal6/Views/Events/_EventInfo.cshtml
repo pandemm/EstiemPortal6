@@ -1,18 +1,18 @@
 ﻿@model EstiemPortal6.ViewModels.EventViewModel
 <div class="eventinfobox container">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_place.png" alt="Local Group" />
             @Model.Place
         </div>
-        <div class="col-sm-6">
+        <div class="col-xs-6">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_date.png" alt="Date of the event" />
             Event dates:
             @Model.StartDate.ToString("dd.MM")
             to
             @Model.EndDate.ToString("dd.MM")
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
                 @if (Model.ApplicationEndDate > DateTime.Today)
             {
                     @Html.ActionLink("Apply Now", "Application", new { eventid = Model.EventId }, new { @class = "btn btn-default" })
@@ -24,26 +24,26 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_euro.png" alt="Participation fee" />
             @if (Model.ParticipationFee != -2147483648)
             {@Model.ParticipationFee}
             else
             { <span>N/A</span>}
         </div>
-        <div class="col-sm-6">
+        <div class="col-xs-6">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_application.png" alt="Application period" />
             Application period:
             @(Model.ApplicationStartDate.HasValue ? Model.ApplicationStartDate.Value.ToString("dd.MM") : string.Empty)
             to
             @(Model.ApplicationEndDate.HasValue ? Model.ApplicationEndDate.Value.ToString("dd.MM") : string.Empty)
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             @Html.ActionLink("View Participants", "Participants", "Events", new { eventid = Model.EventId } , new { @class="btn btn-default"})
         </div>
     </div>  
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_participants.png" alt="Number of participants" />
             @Model.NumberOfRegistered
             /
@@ -52,12 +52,12 @@
             else
             { <span>N/A</span>}
         </div>
-        <div class="col-sm-6">
+        <div class="col-xs-6">
             <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_cancelation.png" alt="Latest cancellation date" />
             Cancellation deadline:
             @(@Model.CancellationDate.HasValue ? Model.CancellationDate.Value.ToString("dd.MM") : string.Empty)
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
                 <a href="/Events/Event?id=@Model.EventId">
                     <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Events/box_link.png" alt="YouTube" border="0" />
                 </a>

@@ -11,16 +11,18 @@ namespace EstiemPortal6.Controllers
     public class ProfileController : Controller
     {
 
-        public ActionResult MyProfile()
+        public ActionResult Index(int userid)
         {
             int CurrentUserId = Int32.Parse(User.Identity.GetUserId());
             var db = new EstiemPortalContext();
             var ProfileViewModel = (from p in db.PORTAL_ESTIEMUser
-                                   where p.UserId == CurrentUserId
+                                   where p.UserId == userid
                                    select new ProfileViewModel
                                    {
-                                       UserId = CurrentUserId,
-                                       LocalGroup = (from s in db.ESTIEM_LocalGroup where s.Id == p.LocalGroupId select s.Name).FirstOrDefault(),
+                                       UserId = userid,
+                                       LocalGroup = (from s in db.ESTIEM_LocalGroup
+                                                     where s.Id == p.LocalGroupId
+                                                     select s.Name).FirstOrDefault(),
                                        Name = p.FirstNameEnglish + " " + p.LastNameEnglish,
                                        BirthDay = p.Birthday,
                                        NickName = p.NickName,

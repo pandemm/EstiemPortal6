@@ -89,6 +89,7 @@ namespace EstiemPortal6.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             // This is default ASP.NET Login code. Some cases that are not used in ESTIEM can be removed.
             var result = await SignInManager.PasswordSignInAsync(model.Name, model.Password, model.RememberMe, shouldLockout: false);
+            var user = new ApplicationUser();
             switch (result)
             {
                 case SignInStatus.Success:

@@ -9,6 +9,7 @@ using EstiemPortal6.Models;
 
 namespace EstiemPortal6.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -20,35 +21,66 @@ namespace EstiemPortal6.Controllers
         {
             var db = new EstiemPortalContext();
             var evvm = (from m in db.EVENTS_Events
-                       where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
-                       orderby m.ApplicationEndDate
-                       select new EventViewModel()
-                       {
-                           EventId = m.Id,
-                           Name = m.Name,
-                           StartDate = m.StartDate,
-                           EndDate = m.EndDate,
-                           ApplicationStartDate = m.ApplicationStartDate,
-                           ApplicationEndDate = m.ApplicationEndDate,
-                           Place = m.Place,
-                       }).Take(6);
+                        where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
+                        orderby m.ApplicationEndDate
+                        select new EventViewModel()
+                        {
+                            EventId = m.Id,
+                            Name = m.Name,
+                            StartDate = m.StartDate,
+                            EndDate = m.EndDate,
+                            ApplicationStartDate = m.ApplicationStartDate,
+                            ApplicationEndDate = m.ApplicationEndDate,
+                            Place = m.Place,
+                        }).Take(6);
             return PartialView(evvm);
         }
 
+        public ActionResult _MainMenu()
+        {
+            var db = new EstiemPortalContext();
+            int currentuser = Int32.Parse(User.Identity.GetUserId());
+            var mvvm = (from m in db.PORTAL_ESTIEMUser
+                      where m.UserId == currentuser
+                      select new MainMenuViewModel()
+                      {
+                          Name = m.FirstNameEnglish + " " + m.LastNameEnglish,
+                          UserId = m.UserId
+                      }).FirstOrDefault();
+            return PartialView("~/Views/Shared/_MainMenu.cshtml", mvvm);
+        }
+
+        public ActionResult _Search()
+        {
+            return View();
+        }
+
+
         public ActionResult _FriendsList()
         {
-            int UserId = Int32.Parse(User.Identity.GetUserId());
+
+            //Todo Check performance of these queries
+            int? UserId = Int32.Parse(User.Identity.GetUserId());
+            // Currently you need to be logged in to accept every page, but later leave this
+            // empty if user is not logged in
+            if (UserId == null)
+                return View();
             var db = new EstiemPortalContext();
             var evs = from m in db.EVENTS_Participants
                       where m.UserId == UserId && m.RegistrationStatus == 0
                       select m.EventID;
 
+            var lgid = (from m in db.PORTAL_ESTIEMUser
+                           where m.UserId == UserId
+                           select m.LocalGroupId).FirstOrDefault();
+
             var friends = from m in db.EVENTS_Participants
-                          where evs.Contains(m.EventID)
+                          where evs.Contains(m.EventID) && m.RegistrationStatus == 0
                           select m.UserId;
 
+            // Fix getting the Local Group Id
             var ownlg = from e in db.PORTAL_ESTIEMUser
-                        where e.LocalGroupId == UserId
+                        where e.LocalGroupId == lgid
                         select e.UserId;
 
             var fvm = (from m in db.EVENTS_Participants

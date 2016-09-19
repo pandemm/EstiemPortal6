@@ -1,63 +1,66 @@
 ﻿@model EstiemPortal6.ViewModels.EventViewModel
 
-<div class="media event-box">
-    @switch (Model.EventType)
-    {
-        case 1:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/europe3d.png" />
-            break;
-        case 2:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/braintrainer.png" />
-            break;
-        case 3:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/sac.png" />
-            break;
-        case 4:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/times.png" />
-            break;
-        case 5:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/vision.png" />
-            break;
-        case 9:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/News%20Thumbnails/Images/Other/thumbnail_exchange.png" />
-            break;
-        case 10:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/News%20Thumbnails/Images/Other/AW%5B1%5D.png" />
-            break;
-        case 11:
-            <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Other/thumbnail_academicdays.png" />
-            break;
+<div class="media">
+    <div class="media event-box">
+        @switch (Model.EventType)
+        {
+            @*case 1:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/europe3d.png" />
+                    break;
+                case 2:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/braintrainer.png" />
+                    break;
+                case 3:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/sac.png" />
+                    break;
+                case 4:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/times.png" />
+                    break;
+                case 5:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Projects/square_70/vision.png" />
+                    break;
+                case 9:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/News%20Thumbnails/Images/Other/thumbnail_exchange.png" />
+                    break;
+                case 10:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/News%20Thumbnails/Images/Other/AW%5B1%5D.png" />
+                    break;
+                case 11:
+                    <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/Logos/Other/thumbnail_academicdays.png" />
+                    break;*@
         default:
             <img class="img" src="https://www.estiem.org/Internal/GetFile.aspx?File=Images/News%20Thumbnails/tom_koolen.jpg" />
-            break;
+                break;
 
-    }
-    <div class="bd">
-        <div class="event-details1">
-            @Html.DisplayFor(modelItem => Model.Name),
-            @Html.DisplayFor(modelItem => Model.Place)
-                
+        }
+        <div class="bd">
+            <div class="event-details1">
+                @Html.DisplayFor(modelItem => Model.Name)
+                @Html.Display(Model.Name),
+                @Html.DisplayFor(modelItem => Model.Place)
+
+            </div>
+            <div class="event-details2">
+                @Model.StartDate.ToString("dd.MM.yyyy") to
+                @Model.EndDate.ToString("dd.MM.yyyy")  |
+
+                @if (Model.ApplicationEndDate > DateTime.Today)
+                {
+                    <span>Application Open</span>
+                }
+                else
+                {
+                    <span>Application Closed</span>
+                }
+
+            </div>
         </div>
-        <div class="event-details2">
-            @Model.StartDate.ToString("dd.MM.yyyy") to
-            @Model.EndDate.ToString("dd.MM.yyyy")  |
 
-            @if (Model.ApplicationEndDate > DateTime.Today)
-        {
-                <span>Application Open</span>
-            }
-            else
-            {
-                <span>Application Closed</span>
-            }
-
-        </div>
     </div>
-
-</div>
-<div class="event-description">
-    @Html.Partial("_Eventinfo", Model)
-    @Html.Raw(Model.Description)
+    <div class="event-description">
+        @Html.Partial("_Eventinfo", Model)
+        @Html.Raw(Model.Description)
+    </div>
 </div>
 
 

@@ -8,7 +8,7 @@ Controller is home controller, as the home page is currently the only place wher
 @foreach (var item in Model)
 {
     <div style="text-overflow:ellipsis;  overflow:hidden; white-space:nowrap; ">
-        <b>@Html.ActionLink(@item.Name, "Profile", new { Id = @item.UserId }, new { @class = "friendslist" })</b>
+        <b>@Html.ActionLink(@item.Name, "Index", "Profile", new { userid = @item.UserId }, new { @class = "friendslist" })</b>
     applied for
         <b>@Html.ActionLink(@item.EventName, "Event", "Events", new { Id = @item.EventId }, new { @class = "friendslist" })</b>
         

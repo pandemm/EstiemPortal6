@@ -63,6 +63,7 @@ namespace EstiemPortal6
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
+                // Do we want to allow language specific letters in the username?
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
