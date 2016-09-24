@@ -11,36 +11,54 @@
 </head>
 <body>
     <div class="main-menu navbar navbar-inverse">
-        @Html.Action("_MainMenu", "Home")
+        <div class="container">
+            <div class="navbar-header main-logo">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="@Url.Content("https://estiem.org/Internal/Images/EstiemPortal/estiem_logo_frontpage.png")" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="main-menu">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="main-menu">@Html.ActionLink("Events", "Index", "Events")</li>
+                    <li class="main-menu">@Html.ActionLink("My Profile", "MyProfile", "Profile")</li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
     </div>
     @*<div class="footer">
-        <div style="float: none;">
-            <div style="padding-left:20px;">
-                <p>
-                    Our Partners:
-                </p>
-            </div>
-            <div class="sponsors">
-                <a href="https://www.beiersdorf.com/career/students-and-graduates">
-                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/BDF_Logo.jpg" alt="Beiersdorf" />
-                </a>
-                <a href="https://www.efaqt.com/Estiem">
-                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/efaqt.png" alt="eFaqt" />
-                </a>
-                <a href="http://www.storaenso.com/">
-                    <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/Stora Enso.png" alt="Stora Enso" />
-                </a>
-            </div>
+            <div style="float: none;">
+                <div style="padding-left:20px;">
+                    <p>
+                        Our Partners:
+                    </p>
+                </div>
+                <div class="sponsors">
+                    <a href="https://www.beiersdorf.com/career/students-and-graduates">
+                        <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/BDF_Logo.jpg" alt="Beiersdorf" />
+                    </a>
+                    <a href="https://www.efaqt.com/Estiem">
+                        <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/efaqt.png" alt="eFaqt" />
+                    </a>
+                    <a href="http://www.storaenso.com/">
+                        <img src="https://www.estiem.org/Internal/Images/ESTIEMPortal/Footer/Stora Enso.png" alt="Stora Enso" />
+                    </a>
+                </div>
 
-        </div>
-    </div>*@  
-    
+            </div>
+        </div>*@
 
-    @Scripts.Render("~/bundles/jquery")
+
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

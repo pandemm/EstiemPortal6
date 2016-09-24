@@ -1,0 +1,9 @@
+﻿<div>
+    @using (Html.BeginForm("index", "Events", FormMethod.Get))
+    {
+        <p>
+            Search Events: @Html.TextBox("searchString", ViewBag.searchString as string)
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>

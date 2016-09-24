@@ -52,7 +52,7 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult _Search()
         {
-            return View();
+            return PartialView();
         }
 
 
