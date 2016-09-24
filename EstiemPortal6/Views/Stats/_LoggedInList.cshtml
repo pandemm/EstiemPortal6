@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<EstiemPortal6.ViewModels.StatsViewModel>
 
-@{
-    Layout = "";
-}
-
-
-
 <div>
     <table id="loggedintable">
         <thead>
@@ -53,7 +47,7 @@
 <script type="text/javascript" charset="utf8">
     $(document).ready( function () {
         $('#loggedintable').dataTable({
-            "pageLength": 100
+            "pageLength": 25
         });
     } );
 </script>
