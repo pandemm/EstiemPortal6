@@ -38,6 +38,7 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult _MainMenu()
         {
+            // This method should not be needed if I'm able to fix adding claims
             var db = new EstiemPortalContext();
             int currentuser = Int32.Parse(User.Identity.GetUserId());
             var mvvm = (from m in db.PORTAL_ESTIEMUser

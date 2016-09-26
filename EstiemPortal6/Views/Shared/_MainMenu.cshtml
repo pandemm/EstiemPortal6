@@ -7,19 +7,19 @@
             <span class="icon-bar"></span>
         </button>
         <a href="@Url.Action("Index", "Home")">
-            <img src="@Url.Content("https://estiem.org/Internal/Images/EstiemPortal/estiem_logo_frontpage.png")" />
+            <img style = "padding-top:5px" src="@Url.Content("https://estiem.org/Internal/Images/EstiemPortal/estiem_logo_frontpage.png")" />
         </a>
     </div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li class="main-menu">@Html.ActionLink("Home", "Index", "Home")</li>
-            <li class="main-menu">@Html.ActionLink("Events", "Index", "Events")</li>
+            <li class="main-menu">@Html.ActionLink("Home", "Index", "Home", new { style = "padding-top:20px" })</li>
+            <li class="main-menu">@Html.ActionLink("Events", "Index", "Events", null, new { style = "padding-top:20px" })</li>
             <li class="main-menu">@Html.ActionLink("My Profile", "Index", "Profile",
-                                         new { userid = Model.UserId }, null)
+                                         new { userid = Model.UserId }, new { style = "padding-top:20px" })
             </li>
             <li>
-                <a href='@Url.Action("MyAction", "MyController")'>
-                <img height="40"src="@Url.Content("https://www.estiem.org/userimage.aspx?id=" + @Model.UserId)" />
+                <a href='@Url.Action("Index", "Profile", new { userid = Model.UserId })'>
+                <img height="32"src="@Url.Content("https://www.estiem.org/userimage.aspx?id=" + @Model.UserId)" />
                 <span>@Model.Name</span>
                 </a>
             </li>

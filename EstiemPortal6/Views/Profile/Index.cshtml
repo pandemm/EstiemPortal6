@@ -48,7 +48,7 @@
             <tr>
                 <th>Event Name</th>
                 <th>Place</th>
-                <th>Dates</th>
+                <th>Dates (Sort is broken)</th>
             </tr>
         </thead>
         <tbody>
@@ -58,8 +58,12 @@
 
                 <tr>
                     <td class="col-xs-6">
-                        @Html.ActionLink(item.Name, "Event", "Events", new { id = item.Id }, new { style = "color:black;" })
+                        @Html.ActionLink(item.Name, "Event",
+                                        "Events", new { id = item.Id },
+                                        new { style = "color:black;" })
                     </td>
+
+
                     <td class="col-xs-3">
                         @item.Place
                     </td>
