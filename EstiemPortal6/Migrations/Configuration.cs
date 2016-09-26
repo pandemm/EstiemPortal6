@@ -5,7 +5,7 @@ namespace EstiemPortal6.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EstiemPortal6.Models.EstiemPortalContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EstiemPortal6.EstiemPortalContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace EstiemPortal6.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(EstiemPortal6.Models.EstiemPortalContext context)
+        protected override void Seed(EstiemPortal6.EstiemPortalContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -27,9 +27,6 @@ namespace EstiemPortal6.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.Events.AddOrUpdate(
-                );
         }
     }
 }

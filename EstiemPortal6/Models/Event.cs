@@ -9,6 +9,9 @@
 
     public partial class Event
     {
+        public Event()
+        { }
+
         [Key]
         public int Id { get; set; }
         public int? HistoryId { get; set; }
@@ -37,6 +40,7 @@
        ApplyFormatInEditMode = true)]
         public DateTime? CancellationDeadLine { get; set; }
         public int? MaxParticipants { get; set; }
+        public int NumberOfRegistered { get; set; }
         public int? MaxParticipantsperLG { get; set; }
         public int? ParticipationFee { get; set; }
         public string HomePage { get; set; }

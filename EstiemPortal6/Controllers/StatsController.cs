@@ -24,7 +24,7 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult _LoggedInList()
         {
-            var lgs = LocalGroupRepository.GetLocalGroups();
+            var lgs = LocalGroupRepository.GetActiveLocalGroups();
             var db = new EstiemPortalContext();
 
             var lgids = from s in db.ESTIEM_LocalGroup

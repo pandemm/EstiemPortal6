@@ -26,13 +26,15 @@ namespace EstiemPortal6
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new StyleBundle("~/Content/dataTables").Include(
+"~/Content/DataTables/css/jquery.dataTables.css",
+"~/Content/DataTables/css/jquery.dataTables.min.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(                   
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/dataTables").Include(
-          "~/Content/DataTables/css/jquery.dataTables.css",
-          "~/Content/DataTables/css/jquery.dataTables.min.css"));
+
         }
     }
 }

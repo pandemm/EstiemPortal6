@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using PagedList;
 using Microsoft.AspNet.Identity;
 using System.Net.Mail;
+using EstiemPortal6.Repositories;
 
 namespace EstiemPortal6.Controllers
 {
@@ -21,68 +22,45 @@ namespace EstiemPortal6.Controllers
         // Todo: Search works however paging should keep the search.
         public ActionResult Index(string searchString, string Filter, int? page)
         {
-            var db = new EstiemPortalContext();
-
-            var evvm = from m in db.EVENTS_Events
-                       where m.EventType != 12 && m.EventType != 9 // Gets all events that are not alumni events or exchanges.
-                       orderby m.StartDate
-                       select new EventViewModel()
-                       {
-                           EventId = m.Id,
-                           Name = m.Name,
-                           Description = m.Description,
-                           StartDate = m.StartDate,
-                           EndDate = m.EndDate,
-                           ApplicationStartDate = m.ApplicationStartDate,
-                           ApplicationEndDate = m.ApplicationEndDate,
-                           Place = m.Place,
-                           ParticipationFee = m.ParticipationFee,
-                           MaxParticipants = m.Maxparticipants,
-                           CancellationDate = m.RetireDeadline,
-                           HomePage = m.HomePage,
-                           Facebook = m.Facebook,
-                           Email = m.Email,
-                           EventType = m.EventType,
-                           RegistrationMode = m.RegistrationMode,
-                           NumberOfRegistered = (from s in db.EVENTS_Participants where s.RegistrationStatus==0 && s.EventID == m.Id  select s.UserId).Count()                     
-                       };
+            var repo = new EventRepository();
+            IEnumerable<Event> ev = repo.GetAllEvents();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                evvm = evvm.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
+                ev = ev.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())
                                        || s.Place.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(s => s.StartDate);
             }
             else
-            { 
-            switch (Filter)
             {
-                default: //Upcoming events
-                case "upcoming":
-                    evvm = from m in evvm                       
-                             where m.EndDate > DateTime.Today
-                             orderby m.StartDate
-                             select m;
-                    break;
-                case "past":
-                    evvm = from m in evvm
-                             where m.EndDate < DateTime.Today
-                             orderby m.StartDate descending
-                             select m;
-                    break;
-                case "application_open":
-                    evvm = from m in evvm
-                             where m.ApplicationEndDate > DateTime.Today && m.RegistrationMode == 0
-                             orderby m.StartDate
-                             select m;
-                    break;
-            }
+                switch (Filter)
+                {
+                    default: //Upcoming events
+                    case "upcoming":
+                        ev = from m in ev
+                               where m.EndDate > DateTime.Today
+                               orderby m.StartDate
+                               select m;
+                        break;
+                    case "past":
+                        ev = from m in ev
+                               where m.EndDate < DateTime.Today
+                               orderby m.StartDate descending
+                               select m;
+                        break;
+                    case "application_open":
+                        ev = from m in ev
+                               where m.ApplicationEndDate > DateTime.Today && m.RegistrationMode == 0
+                               orderby m.StartDate
+                               select m;
+                        break;
+                }
             }
             ViewBag.searchString = searchString;
             ViewBag.Filter = Filter;
             int pageSize = 10;
             //If page is null, page number is 1
             int pageNumber = (page ?? 1);
-            return View(evvm.ToPagedList(pageNumber, pageSize));
+            return View(ev.ToPagedList(pageNumber, pageSize));
         }
 
 
@@ -143,30 +121,9 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult Event(int id)
         {
-            var db = new EstiemPortalContext();
-            var evvm = (from m in db.EVENTS_Events
-                       where m.Id == id
-                       select new EventViewModel()
-                       {
-                           EventId = m.Id,
-                           Name = m.Name,
-                           Description = m.Description,
-                           StartDate = m.StartDate,
-                           EndDate = m.EndDate,
-                           ApplicationStartDate = m.ApplicationStartDate,
-                           ApplicationEndDate = m.ApplicationEndDate,
-                           Place = m.Place,
-                           ParticipationFee = m.ParticipationFee,
-                           MaxParticipants = m.Maxparticipants,
-                           CancellationDate = m.RetireDeadline,
-                           HomePage = m.HomePage,
-                           Facebook = m.Facebook,
-                           Email = m.Email,
-                           EventType = m.EventType,
-                           Youtube = m.Youtube,
-                           NumberOfRegistered = (from s in db.EVENTS_Participants where s.RegistrationStatus == 0 && s.EventID == m.Id select s.UserId).Count()
-                       }).Single();
-            return View(evvm);
+            var repo = new EventRepository();
+            Event ev = repo.GetEventById(id);
+            return View(ev);
         }
 
         public ActionResult Application(int eventid)
@@ -231,22 +188,6 @@ namespace EstiemPortal6.Controllers
             };
             db.EVENTS_Participants.Add(evp);
             db.SaveChanges();
-            //// TODO: Send email to the participant. Figure out where to get credentials for smtp server
-            //MailMessage mailObj = new MailMessage();
-            //mailObj.From = new MailAddress("lassi.uosukainen@gmail.com");
-            //mailObj.Subject = "email";
-            //mailObj.Body = "application stuff";
-            //mailObj.To.Add(new MailAddress("lassi.uosukainen@estiem.org"));
-            //mailObj.IsBodyHtml = true;
-
-            //SmtpClient objSmtp = new SmtpClient();
-            //objSmtp.Host = "smtp.gmail.com";
-            //objSmtp.Port = 25;
-            //objSmtp.UseDefaultCredentials = false;
-            //objSmtp.Credentials = new System.Net.NetworkCredential("username", "password");
-            //objSmtp.EnableSsl = true;
-            //objSmtp.Send(mailObj);
-
             Response.Redirect("~/Events/Index");
             return View();
         }

@@ -1,11 +1,11 @@
-﻿@model PagedList.PagedList<EstiemPortal6.Models.Event>
-@using PagedList.Mvc
+﻿@model PagedList.PagedList<EstiemPortal6.ViewModels.EventViewModel>
+@using PagedList.Mvc;
 <script src="~/Scripts/jquery-3.1.0.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
   jQuery(".event-description").hide();
-  //toggle the component with class msg_body
+  //toggle the componenet with class msg_body
   jQuery(".event-box").click(function()
   {
     jQuery(this).next(".event-description").slideToggle(300);

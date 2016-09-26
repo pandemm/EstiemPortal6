@@ -55,6 +55,24 @@ namespace EstiemPortal6.Controllers
             return PartialView();
         }
 
+        [HttpGet]
+        public ActionResult Search(string searchstring, string searchtype)
+        {
+            var db = new EstiemPortalContext();
+
+            var people = db.PORTAL_ESTIEMUser.
+                Where(x => x.FirstNameEnglish.Contains(searchstring)
+                || x.LastNameEnglish.Contains(searchstring));
+
+            var events = db.EVENTS_Events.
+                Where(x => x.Name.Contains(searchstring)
+                || x.Place.Contains(searchstring));
+
+            var localgroups = db.ESTIEM_LocalGroup.
+                Where(x => x.Name.Contains(searchstring));
+            return View(people);
+        }
+
 
         public ActionResult _FriendsList()
         {

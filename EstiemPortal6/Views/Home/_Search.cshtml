@@ -1,5 +1,5 @@
 ﻿<div>
-    @using (Html.BeginForm("index", "Events", FormMethod.Get))
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get))
     {
         <p>
             Search Events: @Html.TextBox("searchString", ViewBag.searchString as string)
