@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EstiemPortal6.Models;
+using EstiemPortal6.Repositories;
 
 namespace EstiemPortal6.Controllers
 {
@@ -92,6 +93,11 @@ namespace EstiemPortal6.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    string urlWithAccessToken = "https://hooks.slack.com/services/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";
+                    Slack slack = new Slack(urlWithAccessToken);
+                    slack.PostMessage(username: "Estiem Mobile",
+                               text: model.Name + " logged in",
+                               channel: "#estiem-mobile");
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

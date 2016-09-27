@@ -168,6 +168,18 @@ namespace EstiemPortal6.Controllers
             db.EVENTS_Participants.Add(evp);
             db.SaveChanges();
             Response.Redirect("~/Events/Index");
+            //Post to Slack
+            string urlWithAccessToken = "https://hooks.slack.com/services/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";
+
+            Slack slack = new Slack(urlWithAccessToken);
+            var evrepo = new EventRepository();
+            Event ev = evrepo.GetEventById(pvm.EventId);
+            var usrrepo = new UserRepository();
+            User usr = usrrepo.GetUserById(pvm.UserId);
+            slack.PostMessage(username: "Estiem Mobile",
+                       text: usr.UserName + " applied for " + ev.Name,
+                       channel: "#estiem-mobile");
+
             return View();
         }
 
