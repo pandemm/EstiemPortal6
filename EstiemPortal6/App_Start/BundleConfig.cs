@@ -33,14 +33,10 @@ namespace EstiemPortal6
 
             bundles.Add(new StyleBundle("~/Content/css").Include(                   
                       "~/Content/bootstrap.css",
-                      "~/Content/Site.css"));
+                       new CssRewriteUrlTransform()));
 
-<<<<<<< HEAD
-
-=======
             bundles.Add(new StyleBundle("~/Content/dataTables").Include(
-          "~/Content/DataTables/css/jquery.dataTables.min.css"));
->>>>>>> 5e8cd31cebd22bbac4363eb663504759d1ca2140
+          "~/Content/DataTables/css/jquery.dataTables.min.css", "~/Content/Site.css"));
         }
     }
 }

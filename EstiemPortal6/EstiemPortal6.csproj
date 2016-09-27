@@ -686,6 +686,7 @@
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Shared\_LeftBar.cshtml" />
     <Content Include="Views\Shared\_Carousel.cshtml" />
+    <Content Include="Views\Shared\_MainMenuNotLoggedIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

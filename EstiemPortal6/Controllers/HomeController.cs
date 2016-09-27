@@ -57,8 +57,13 @@ namespace EstiemPortal6.Controllers
 
             return PartialView(cvm);
         }
+        [AllowAnonymous]
         public ActionResult _MainMenu()
         {
+            if(!User.Identity.IsAuthenticated)
+            {
+                return PartialView("~/Views/Shared/_MainMenuNotLoggedIn.cshtml");
+            }
             // This method should not be needed if I'm able to fix adding claims
             var db = new EstiemPortalContext();
             int currentuser = Int32.Parse(User.Identity.GetUserId());

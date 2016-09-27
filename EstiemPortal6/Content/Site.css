@@ -1,7 +1,7 @@
 ﻿@import "Site2.less";
 
 body {
-    font-family: cursive; 
+    font-family: "Gill Sans MT", "Gill Sans", Arial, sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */

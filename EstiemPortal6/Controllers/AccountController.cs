@@ -15,7 +15,6 @@ namespace EstiemPortal6.Controllers
 
     // This controller is used for logging in related tasks. 
     // In the future registering new accounts can also be implemented here.
-    [Authorize]
     public class AccountController : Controller
     {
 
