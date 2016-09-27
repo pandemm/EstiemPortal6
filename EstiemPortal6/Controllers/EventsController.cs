@@ -84,10 +84,6 @@ namespace EstiemPortal6.Controllers
                                         EventName = m.EVENTS_Events.Name
                                         
                                     };
-            if (EventParticipants == null)
-            {
-
-            }
             return View(EventParticipants);
         }
 

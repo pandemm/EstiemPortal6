@@ -39,9 +39,9 @@ namespace EstiemPortal6.Controllers
 
         public ActionResult _Carousel()
         {
-            var car1 = new CarouselViewModel("European Master Thesis Award",
-                "https://www.estiem.org/Internal/GetFile.aspx?File=Images/Internal/Banners/Banner5.jpg",
-                "Apply Now - <button class=\"btn btn-primary\">Click here</button>", true);
+            var car1 = new CarouselViewModel("Want to give feedback?",
+                "https://brandfolder.com/slack/logo/slack-primary-logo.png",
+                "Join the Slack channel - <a href=\"https://estiem.slack.com/?redir=%2Fmessages%2Festiem-mobile%2F\"><button class=\"btn btn-primary\">Click here</button></a>", true);
             var car2 = new CarouselViewModel("Where is Tom Koolen?",
                 "https://www.estiem.org/Internal/GetFile.aspx?File=Images/Internal/Banners/banner2.jpg",
                 "", false);
