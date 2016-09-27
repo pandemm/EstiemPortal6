@@ -11,13 +11,18 @@
 
 </head>
 <body>
-    <div class="main-menu navbar navbar-inverse">
+    <div class="main-menu navbar navbar-inverse" style="margin-bottom:0;">
         @Html.Action("_MainMenu", "Home")
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+
+    <div class="container">
+        <div class="row">
+          <div class="container body-content">
+                @RenderBody()
+            </div>
+        </div>
     </div>
+
     @*<div class="footer">
             <div style="float: none;">
                 <div style="padding-left:20px;">
@@ -41,7 +46,7 @@
         </div>*@
 
 
-    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

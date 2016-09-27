@@ -378,6 +378,7 @@
     <Compile Include="Models\DAL\TAG_TagLink.cs" />
     <Compile Include="Models\DAL\TRIPADVISOR_Advises.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\CarouselViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\FriendsViewModel.cs" />
     <Compile Include="ViewModels\LocalGroupViewModel.cs" />
@@ -682,6 +683,9 @@
     <Content Include="Views\Stats\_LoggedInList.cshtml" />
     <Content Include="Views\Stats\McTools.cshtml" />
     <Content Include="Views\Events\Index2.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Shared\_LeftBar.cshtml" />
+    <Content Include="Views\Shared\_Carousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

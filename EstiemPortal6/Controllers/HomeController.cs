@@ -36,6 +36,27 @@ namespace EstiemPortal6.Controllers
             return PartialView(evvm);
         }
 
+
+        public ActionResult _Carousel()
+        {
+            var car1 = new CarouselViewModel("European Master Thesis Award",
+                "https://www.estiem.org/Internal/GetFile.aspx?File=Images/Internal/Banners/Banner5.jpg",
+                "Apply Now - <button class=\"btn btn-primary\">Click here</button>", true);
+            var car2 = new CarouselViewModel("Where is Tom Koolen?",
+                "https://www.estiem.org/Internal/GetFile.aspx?File=Images/Internal/Banners/banner2.jpg",
+                "", false);
+            var car3 = new CarouselViewModel("Tom Koolen Found",
+                "https://www.estiem.org/Internal/GetFile.aspx?File=Images/Internal/Banners/banner7.jpg",
+                "Check out Events page.", false);
+            var car4 = new CarouselViewModel("Want your slide here?",
+                "https://www.estiem.org/Internal/GetFile.aspx?File=Images/Internal/Banners/Banner3.jpg",
+                "Better find someone who knows how to design stuff.", false);
+            var cvm = new List<CarouselViewModel> {
+                car1, car2, car3, car4
+            };
+
+            return PartialView(cvm);
+        }
         public ActionResult _MainMenu()
         {
             // This method should not be needed if I'm able to fix adding claims
@@ -50,6 +71,8 @@ namespace EstiemPortal6.Controllers
                       }).FirstOrDefault();
             return PartialView("~/Views/Shared/_MainMenu.cshtml", mvvm);
         }
+
+
 
         public ActionResult _Search()
         {

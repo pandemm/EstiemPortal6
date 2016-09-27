@@ -12,7 +12,7 @@
     </div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li class="main-menu">@Html.ActionLink("Home", "Index", "Home", new { style = "padding-top:20px" })</li>
+            <li class="main-menu">@Html.ActionLink("Home", "Index", "Home", null, new { style = "padding-top:20px" })</li>
             <li class="main-menu">@Html.ActionLink("Events", "Index", "Events", null, new { style = "padding-top:20px" })</li>
             <li class="main-menu">@Html.ActionLink("My Profile", "Index", "Profile",
                                          new { userid = Model.UserId }, new { style = "padding-top:20px" })

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using EstiemPortal6.Models;
 
 namespace EstiemPortal6.Repositories
@@ -80,7 +81,9 @@ namespace EstiemPortal6.Repositories
 
         public void EditEvent(Event ev)
         {
-
+            var db = new EstiemPortalContext();
+            db.Entry(ev).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         public bool DeleteEvent(int evid)

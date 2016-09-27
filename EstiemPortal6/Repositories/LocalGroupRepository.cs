@@ -60,7 +60,7 @@ namespace EstiemPortal6.Repositories
 
         public void EditLocalGroup(LocalGroup lg)
         {
-
+             
         }
         public void DeleteLocalGroup()
         {
@@ -71,7 +71,7 @@ namespace EstiemPortal6.Repositories
 
         public void CreateLocalGroup(LocalGroup lg)
         {
-
+            //Not used too much to be done later.
         }
 
 

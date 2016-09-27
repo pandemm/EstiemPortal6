@@ -1,13 +1,12 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-<div>
-    @{ Html.RenderAction("_Search"); }
+<div class="hidden-xs row" style="position:relative; margin-bottom:20px;">
+    @{ Html.RenderAction("_Carousel"); }
 </div>
-<div class="event-preview">
+<div class="event-preview row">
     <div class="col-md-6">
-        <h2>Upcoming Events</h2>     
+        <h2>Upcoming Events</h2>
         @{ Html.RenderAction("_EventShort"); }
     </div>
     <div class="col-md-6">

@@ -15,11 +15,12 @@ using EstiemPortal6.Repositories;
 
 namespace EstiemPortal6.Controllers
 {
+    // This means that all the pages under this controller are available only
+    // for authenticated users. Remove this later.
     [Authorize]
     public class EventsController : Controller
     {      
         // Returns the default page with events.
-        // Todo: Search works however paging should keep the search.
         public ActionResult Index(string searchString, string Filter, int? page)
         {
             var repo = new EventRepository();
@@ -64,7 +65,7 @@ namespace EstiemPortal6.Controllers
         }
 
 
-        public ActionResult Participants(int eventid, string sortOrder)
+        public ActionResult Participants(int eventid)
         {
             //Todo: Create exception if no eventid
             var db = new EstiemPortalContext();
@@ -83,9 +84,24 @@ namespace EstiemPortal6.Controllers
                                         EventName = m.EVENTS_Events.Name
                                         
                                     };
+            if (EventParticipants == null)
+            {
+
+            }
             return View(EventParticipants);
         }
 
+        public ActionResult Edit(int id)
+        {
+            var repo = new EventRepository();
+            Event ev = repo.GetEventById(id);
+            return View(ev);
+        }
+        [HttpPost]
+        public ActionResult Edit(Event ev)
+        {
+            return View();
+        }
         public ActionResult Event(int id)
         {
             var repo = new EventRepository();
