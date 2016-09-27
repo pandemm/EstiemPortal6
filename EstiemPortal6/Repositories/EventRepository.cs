@@ -41,6 +41,7 @@ namespace EstiemPortal6.Repositories
                          HomePage = m.HomePage,
                          Facebook = m.Facebook,
                          Email = m.Email,
+                         RegistrationMode = m.RegistrationMode,
                          NumberOfRegistered = (from s in db.EVENTS_Participants
                                                where s.RegistrationStatus == 0 && s.EventID == m.Id
                                                select s.UserId).Count()
@@ -71,6 +72,7 @@ namespace EstiemPortal6.Repositories
                           HomePage = m.HomePage,
                           Facebook = m.Facebook,
                           Email = m.Email,
+                          RegistrationMode = m.RegistrationMode,
                           NumberOfRegistered = (from s in db.EVENTS_Participants
                                                 where s.RegistrationStatus == 0 && s.EventID == m.Id
                                                 select s.UserId).Count()

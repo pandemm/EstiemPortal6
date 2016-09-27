@@ -50,9 +50,9 @@ namespace EstiemPortal6.Controllers
                         break;
                     case "application_open":
                         ev = from m in ev
-                               where m.ApplicationEndDate > DateTime.Today && m.RegistrationMode == 0
-                               orderby m.StartDate
-                               select m;
+                             where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
+                             orderby m.StartDate
+                             select m;
                         break;
                 }
             }
