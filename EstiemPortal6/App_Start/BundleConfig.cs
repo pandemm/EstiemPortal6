@@ -13,6 +13,7 @@ namespace EstiemPortal6
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+
             bundles.Add(new ScriptBundle("~/bundles/dataTables").Include(
               "~/Scripts/DataTables/jquery.dataTables.js",
               "~/Scripts/DataTables/dataTables.bootstrap.js"));
@@ -34,7 +35,12 @@ namespace EstiemPortal6
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css"));
 
+<<<<<<< HEAD
 
+=======
+            bundles.Add(new StyleBundle("~/Content/dataTables").Include(
+          "~/Content/DataTables/css/jquery.dataTables.min.css"));
+>>>>>>> 5e8cd31cebd22bbac4363eb663504759d1ca2140
         }
     }
 }
