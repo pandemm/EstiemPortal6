@@ -38,8 +38,8 @@ namespace EstiemPortal6.Controllers
                     default: //Upcoming events
                     case "upcoming":
                         ev = from m in ev
-                               where m.EndDate > DateTime.Today
-                               orderby m.StartDate
+                               where m.EndDate > DateTime.Today && (m.EventType != 12 && m.EventType != 9)
+                             orderby m.StartDate
                                select m;
                         break;
                     case "past":
@@ -182,19 +182,28 @@ namespace EstiemPortal6.Controllers
 
             return View();
         }
-        public JsonResult application_open()
+        [AllowAnonymous]
+        public ActionResult application_open()
         {
             var repo = new EventRepository();
             var evs = repo.GetAllEvents();
             var ev = from m in evs
                      where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
                      orderby m.StartDate
+<<<<<<< HEAD
                      select new Payload {
                         Channel="estiem-mobile",
                         Text= m.Name + " in " + m.Place + ". Starts at " + m.StartDate + " until " + m.EndDate
                         + ". Application ends on " + m.ApplicationEndDate,
                         Username="lassi"
+=======
+                     select new Payload
+                     {
+                         Text = m.Name + " in " + m.Place + ". Starts at " + m.StartDate + " until " + m.EndDate
+                        + ". Application ends on " + m.ApplicationEndDate
+>>>>>>> cc63978d04afd42063f6efea95740db13eae1a5f
                      };
+            string urlWithAccessToken = "https://hooks.slack.com/services/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";
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
 

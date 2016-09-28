@@ -60,4 +60,12 @@ namespace EstiemPortal6.Models
         [JsonProperty("text")]
         public string Text { get; set; }
     }
+
+    public class Slashcommand
+    {
+        [JsonProperty("text")]
+        public string Text { get; set; }
+        [JsonProperty("response_type")]
+        public string ResponseType { get; set; }
+    }
 }
