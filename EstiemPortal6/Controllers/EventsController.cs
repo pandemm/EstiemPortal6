@@ -182,6 +182,23 @@ namespace EstiemPortal6.Controllers
 
             return View();
         }
+        public JsonResult application_open()
+        {
+            var repo = new EventRepository();
+            var evs = repo.GetAllEvents();
+            var ev = from m in evs
+                     where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
+                     orderby m.StartDate
+                     select new Event {
+                         Name = m.Name,
+                         StartDate = m.StartDate,
+                         EndDate = m.EndDate,
+                         ApplicationEndDate = m.ApplicationEndDate,
+                         ApplicationStartDate = m.ApplicationStartDate,
+                         Place = m.Place
+                     };
+            return Json(ev, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
