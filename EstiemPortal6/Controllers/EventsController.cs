@@ -189,13 +189,11 @@ namespace EstiemPortal6.Controllers
             var ev = from m in evs
                      where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
                      orderby m.StartDate
-                     select new Event {
-                         Name = m.Name,
-                         StartDate = m.StartDate,
-                         EndDate = m.EndDate,
-                         ApplicationEndDate = m.ApplicationEndDate,
-                         ApplicationStartDate = m.ApplicationStartDate,
-                         Place = m.Place
+                     select new Payload {
+                        Channel="estiem-mobile",
+                        Text= m.Name + " in " + m.Place + ". Starts at " + m.StartDate + " until " + m.EndDate
+                        + ". Application ends on " + m.ApplicationEndDate,
+                        Username="lassi"
                      };
             return Json(ev, JsonRequestBehavior.AllowGet);
         }
