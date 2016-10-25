@@ -36,9 +36,6 @@ namespace EstiemPortal6.Repositories
         {
             var db = new EstiemPortalContext();
             var news = from m in db.NEWS_News
-                       // Before paging, delete after it is implemented
-
-                       where m.Id>9000
                        orderby m.Id descending
                          select new News
                          {
@@ -51,7 +48,16 @@ namespace EstiemPortal6.Repositories
                              Preview = m.Preview,
                              Priority = m.Priority,
                              Text = m.Text,
-                             Updated = m.Updated
+                             Updated = m.Updated,
+                             Categories = from a in db.NEWS_NewsCategories
+                                          join b in db.NEWS_Category
+                                          on a.CategoryId equals b.Id
+                                          where a.NewsId == m.Id
+                                          select new NewsCategory
+                                          {
+                                              CategoryId = a.CategoryId,
+                                              Name = b.Name
+                                          }
                          };
             return news;
         }
@@ -60,7 +66,7 @@ namespace EstiemPortal6.Repositories
         {
             var All = GetAllNews();
             var news = from m in All
-                       where m.Categories == Category
+                       where m.Categories.Contains(Category)
                        select new News
                        {
                            Id = m.Id,
@@ -75,6 +81,19 @@ namespace EstiemPortal6.Repositories
                            Updated = m.Updated
                        };
             return news;
+        }
+
+        public NewsCategory GetNewsCategory(int id)
+        {
+            var db = new EstiemPortalContext();
+            var category = (from m in db.NEWS_Category
+                           where m.Id == id
+                           select new NewsCategory
+                           {
+                               CategoryId = m.Id,
+                               Name = m.Name
+                           }).FirstOrDefault();
+            return category;
         }
 
     }

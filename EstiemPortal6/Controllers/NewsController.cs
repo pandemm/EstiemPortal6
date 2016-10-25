@@ -17,10 +17,11 @@ namespace EstiemPortal6.Controllers
             return View(news);
         }
 
-        public ActionResult NewsList()
+        public ActionResult NewsList(int id)
         {
             var repo = new NewsRepository();
-            var news = repo.GetAllNews();
+            var category = repo.GetNewsCategory(id);
+            var news = repo.GetNewsByCategory(category);
             return PartialView(news);
         }
     }

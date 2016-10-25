@@ -91,6 +91,7 @@ namespace EstiemPortal6
         public virtual DbSet<LOGREPORT_IgnorableItems> LOGREPORT_IgnorableItems { get; set; }
         public virtual DbSet<LOGREPORT_PageInterpreter> LOGREPORT_PageInterpreter { get; set; }
         public virtual DbSet<NEWS_Category> NEWS_Category { get; set; }
+        public virtual DbSet<NEWS_NewsCategories> NEWS_NewsCategories { get; set; }
         public virtual DbSet<NEWS_News> NEWS_News { get; set; }
         public virtual DbSet<NEWS_Newsletter> NEWS_Newsletter { get; set; }
         public virtual DbSet<NEWS_NewsletterTemplate> NEWS_NewsletterTemplate { get; set; }

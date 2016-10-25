@@ -29,9 +29,17 @@ namespace EstiemPortal6.Models
 
     }
 
-    public class NewsCategory
+    public class NewsCategory : IEquatable<NewsCategory>
     {
         public int CategoryId { get; set; }
         public string Name { get; set; }
+
+        public bool Equals(NewsCategory other)
+        {
+            if (Equals(this.CategoryId, other.CategoryId))
+                return true;
+            else
+                return false;
+        }
     }
 }
