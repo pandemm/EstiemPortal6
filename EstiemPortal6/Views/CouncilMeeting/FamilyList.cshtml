@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Family";
+}
+
+<h2 style="text-align:center">Council Meeting Novi Sad Families</h2>
+@{ string linktext; }
+@{int a = 0; }
+
+@for (a = 1; a < 10; ++a)
+{
+    <h2 class="family">
+        @{linktext = "Family " + a; }
+        @Html.ActionLink(linktext, "Family", "Councilmeeting", new { familyid = a }, null)
+    </h2>
+}

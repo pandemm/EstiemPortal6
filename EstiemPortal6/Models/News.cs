@@ -10,7 +10,7 @@ namespace EstiemPortal6.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string ImageUrl { get; set; }
-        public short Priority { get; set; }
+        public int Priority { get; set; }
         public string Author { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
@@ -25,7 +25,13 @@ namespace EstiemPortal6.Models
         // Int: 
         // Pros: Easier to update
         // Cons:More Database joins required
-        public string Category { get; set; }
+        public IEnumerable<NewsCategory> Categories { get; set; }
 
+    }
+
+    public class NewsCategory
+    {
+        public int CategoryId { get; set; }
+        public string Name { get; set; }
     }
 }

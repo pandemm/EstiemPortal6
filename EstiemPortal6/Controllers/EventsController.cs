@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
@@ -12,6 +13,10 @@ using PagedList;
 using Microsoft.AspNet.Identity;
 using System.Net.Mail;
 using EstiemPortal6.Repositories;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
+using System.Collections.Specialized;
 
 namespace EstiemPortal6.Controllers
 {
@@ -131,9 +136,6 @@ namespace EstiemPortal6.Controllers
                        where m.Id == eventid
                        select new ParticipantsViewModel()
                        {
-                           EventName = m.Name,
-                           ApplicationEndDate= m.ApplicationEndDate,
-                           RegistrationMode = m.RegistrationMode,
                            Vegetarian = null,
                            EatPork = null,
                            RequireVisa = null
@@ -143,13 +145,13 @@ namespace EstiemPortal6.Controllers
 
             // If registration is not open currently, or registrationmode is not open to public
             // redirect to the events page
-            if (pvm.ApplicationEndDate < DateTime.Now || pvm.RegistrationMode != 0)
+            if (pvm.Event.ApplicationEndDate < DateTime.Now || pvm.Event.RegistrationMode != 0)
                 Response.Redirect("~/Events/Index");
 
             return View(pvm);
         }
         [HttpPost]
-        public ActionResult Application(ParticipantsViewModel pvm)
+        public async Task<ActionResult> Application(ParticipantsViewModel pvm)
         {
             // Add the application to the database
             var db = new EstiemPortalContext();
@@ -168,20 +170,25 @@ namespace EstiemPortal6.Controllers
             db.EVENTS_Participants.Add(evp);
             db.SaveChanges();
             Response.Redirect("~/Events/Index");
-            //Post to Slack
+            // Post application info to Slack
             string urlWithAccessToken = "https://hooks.slack.com/services/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";
-
             Slack slack = new Slack(urlWithAccessToken);
             var evrepo = new EventRepository();
             Event ev = evrepo.GetEventById(pvm.EventId);
             var usrrepo = new UserRepository();
             User usr = usrrepo.GetUserById(pvm.UserId);
-            slack.PostMessage(username: "Estiem Mobile",
-                       text: usr.UserName + " applied for " + ev.Name,
-                       channel: "#estiem-mobile");
-
+            //slack.PostMessage(username: "Estiem Mobile",
+            //           text: usr.UserName + " applied for " + ev.Name,
+            //           channel: "#estiem-mobile");
+            // Slack invite to channel
+            // Invite applying user to the group of the event
+            // Should this be applying or after registration?
+            string parameters = "?token=" +  System.Configuration.ConfigurationManager.AppSettings["SlackToken"] + "?name=" + pvm.Event.Name;
+            var resp = await slack.PostToSlack("groups.invite", parameters);
             return View();
         }
+
+        // This is a slack command that returns event that have their application currently open
         [AllowAnonymous]
         public ActionResult application_open()
         {
@@ -190,18 +197,11 @@ namespace EstiemPortal6.Controllers
             var ev = from m in evs
                      where (m.EventType != 12 && m.EventType != 9) && m.ApplicationEndDate > DateTime.Now
                      orderby m.StartDate
-<<<<<<< HEAD
                      select new Payload {
                         Channel="estiem-mobile",
                         Text= m.Name + " in " + m.Place + ". Starts at " + m.StartDate + " until " + m.EndDate
                         + ". Application ends on " + m.ApplicationEndDate,
                         Username="lassi"
-=======
-                     select new Payload
-                     {
-                         Text = m.Name + " in " + m.Place + ". Starts at " + m.StartDate + " until " + m.EndDate
-                        + ". Application ends on " + m.ApplicationEndDate
->>>>>>> cc63978d04afd42063f6efea95740db13eae1a5f
                      };
             string urlWithAccessToken = "https://hooks.slack.com/services/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";
             return Json(ev, JsonRequestBehavior.AllowGet);

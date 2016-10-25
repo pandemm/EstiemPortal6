@@ -14,9 +14,6 @@
         <ul class="nav navbar-nav">
             <li class="main-menu">@Html.ActionLink("Home", "Index", "Home", null, new { style = "padding-top:20px" })</li>
             <li class="main-menu">@Html.ActionLink("Events", "Index", "Events", null, new { style = "padding-top:20px" })</li>
-            <li class="main-menu">@Html.ActionLink("My Profile", "Index", "Profile",
-                                         new { userid = Model.UserId }, new { style = "padding-top:20px" })
-            </li>
             <li>
                 <a href='@Url.Action("Index", "Profile", new { userid = Model.UserId })'>
                 <img height="32"src="@Url.Content("https://www.estiem.org/userimage.aspx?id=" + @Model.UserId)" />

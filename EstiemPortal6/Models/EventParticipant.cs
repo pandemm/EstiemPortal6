@@ -9,7 +9,7 @@
     using System.Web;
 
 
-    public partial class EventParticipants
+    public partial class EventParticipant
     {
         [Key]
         public int EventParticipationId { get; set; }
@@ -39,7 +39,7 @@
         public string Visa_PassportNumber { get; set; }
         public DateTime? Visa_PassportExpiryDate { get; set; }
         public virtual Event Event { get; set; }
-        public virtual User User { get; set; }
+        public virtual User Participant { get; set; }
 
     }
 }

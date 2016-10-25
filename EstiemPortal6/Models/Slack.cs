@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace EstiemPortal6.Models
@@ -45,6 +47,17 @@ namespace EstiemPortal6.Models
                 //The response text is usually "ok"  
                 string responseText = _encoding.GetString(response);
             }
+        }
+
+        public async Task<HttpResponseMessage> PostToSlack(string method, string parameters)
+        {
+            string url = "https://slack.com/api/" + method + parameters;
+            //+ System.Configuration.ConfigurationManager.AppSettings["SlackToken"]
+            //+ "&name=%23" + name + "&pretty=1";
+            HttpClient client = new HttpClient();
+            Task<HttpResponseMessage> PostToSlack = client.GetAsync(url);
+            var a = await PostToSlack;
+            return a;
         }
     }
 

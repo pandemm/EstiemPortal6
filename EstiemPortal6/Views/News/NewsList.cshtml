@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EstiemPortal6.Models.News>
+
+<style>#newstable_wrapper{
+    margin-top:20px;
+    margin-bottom:20px;
+}</style>
+
+<h2>What's happening?</h2>
+<table id="newstable">
+    <tbody>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.Partial("~/Views/Shared/_NewsShort.cshtml", item)
+            </tr>
+        }
+                
+    </tbody>
+</table>
+
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>
+
+
+<script type="text/javascript" charset="utf8">
+    $(document).ready(function () {
+        $('#newstable').dataTable({
+            "pageLength": 25,
+            "bSort": false,
+            "pageLength": 5,
+            "iDisplayLength": 5,
+            "scrollCollapse": false,
+            "scrollY": 400,
+            "bLengthChange": false,
+            columns: [
+                { title: "Image" },
+                { title: "NewsItem" },
+            ]
+        });
+        $('thead').hide();
+    });
+
+    
+
+</script>

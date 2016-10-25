@@ -1,0 +1,15 @@
+﻿@model EstiemPortal6.HTML_HtmlModule
+
+@{
+    ViewBag.Title = "Applicants";
+}
+
+
+<div>
+    @Html.Raw("<h2> Applicants </h2>")
+</div>
+<div>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.Text))
+</div>
+<div>
+</div>

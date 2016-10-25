@@ -59,7 +59,7 @@
         public short? AContentLevel { get; set; }
         public short? BContactLevel { get; set; }
         public short? CultureLevel { get; set; }
-        public virtual ICollection<EventParticipants> EventParticipants { get; set; }
+        public virtual ICollection<EventParticipant> EventParticipants { get; set; }
 
     }
 }

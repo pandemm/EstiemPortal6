@@ -1,0 +1,8 @@
+﻿@model EstiemPortal6.Models.News
+
+<h2>@Model.Title</h2>
+<div class="greentext">Written by: @Model.Author, published on: @Model.Created.ToString("dd.MM.yyy")</div>
+<div>
+    @Html.Raw(Model.Text)
+</div>
+
