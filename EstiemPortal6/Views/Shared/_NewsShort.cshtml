@@ -6,6 +6,6 @@
     <img width="100" height="60"src="@imageurl"/>
 </td>
 <td>
-<span class="greentext" style="color:#205E44 !important; font-weight: bold;">@Html.ActionLink(Model.Title, "NewsItem", new { id = Model.Id }, new { @class="greentext"})</span>
-<div>@Model.Preview</div>
+<span>@Html.ActionLink(Model.Title, "NewsItem", new { id = Model.Id }, new { @class="greentext"})</span>
+<div>@Html.Raw(Model.Preview)</div>
 </td>
