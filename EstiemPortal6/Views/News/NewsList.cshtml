@@ -28,7 +28,12 @@
 <script type="text/javascript" charset="utf8">
     $(document).ready(function () {
         $('#newstable').dataTable({
+            "ajax": {
+                "url": "@Url.Action("AjaxGetData", "News")",
+                "type": "GET"
+                    },
             "pageLength": 25,
+            "serverSide": true,
             "bSort": false,
             "pageLength": 5,
             "iDisplayLength": 5,

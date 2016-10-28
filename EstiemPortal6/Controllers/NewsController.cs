@@ -33,8 +33,26 @@ namespace EstiemPortal6.Controllers
         {
             var repo = new NewsRepository();
             var category = repo.GetNewsCategory(id);
-            var news = repo.GetNewsByCategory(category);
+            // Take only 15 newsitems until ajax is done
+            var news = repo.GetNewsByCategory(category).Take(15);
             return PartialView(news);
+        }
+
+        public ActionResult AjaxGetData(int id)
+        {
+            var repo = new NewsRepository();
+            var category = repo.GetNewsCategory(id);
+            var news = repo.GetNewsByCategory(category);
+
+            return Json(news);
+        }
+
+        public class NewsTableData
+        {
+            public int draw { get; set; }
+            public int recordsTotal { get; set; }
+            public int recordsFiltered { get; set; }
+            public List<News> data { get; set; }
         }
     }
 }
