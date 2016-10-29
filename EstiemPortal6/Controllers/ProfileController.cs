@@ -30,7 +30,10 @@ namespace EstiemPortal6.Controllers
                                        StudyInformation = p.StudyInfo,
                                        StudiesStart = p.StudiesStart,
                                        AttendedEvents = (from s in db.EVENTS_Participants
-                                                         where s.RegistrationStatus==0 && s.UserId == p.UserId
+                                                         // Shows events where status is registered or organizer
+                                                         // Make an enum out of this
+                                                         where (s.RegistrationStatus==0 || s.RegistrationStatus == 5)
+                                                                && s.UserId == p.UserId
                                                          orderby s.EVENTS_Events.StartDate descending
                                                          select s.EVENTS_Events).ToList()
 
