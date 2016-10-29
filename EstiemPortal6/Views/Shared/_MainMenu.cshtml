@@ -14,10 +14,11 @@
         <ul class="nav navbar-nav">
             <li class="main-menu">@Html.ActionLink("Home", "Index", "Home", null, new { style = "padding-top:20px" })</li>
             <li class="main-menu">@Html.ActionLink("Events", "Index", "Events", null, new { style = "padding-top:20px" })</li>
+            <li class="main-menu" style="padding-top:5px;"><a href="https://wiki.estiem.org/wiki/index.php">Wiki</a></li>
             <li>
                 <a href='@Url.Action("Index", "Profile", new { userid = Model.UserId })'>
-                <img height="32"src="@Url.Content("https://www.estiem.org/userimage.aspx?id=" + @Model.UserId)" />
-                <span>@Model.Name</span>
+                    <img height="32" src="@Url.Content("https://www.estiem.org/userimage.aspx?id=" + @Model.UserId)" />
+                    <span>@Model.Name</span>
                 </a>
             </li>
             @Html.Partial("_LoginPartial")

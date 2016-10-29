@@ -238,6 +238,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Emails\EventEmails.cs" />
     <Compile Include="Models\CouncilMeetingModel.cs" />
     <Compile Include="Models\DAL\ALUMNI_Event.cs" />
@@ -568,6 +569,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
