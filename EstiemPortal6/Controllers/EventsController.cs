@@ -17,6 +17,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
 using System.Collections.Specialized;
+using System.Text.RegularExpressions;
 
 namespace EstiemPortal6.Controllers
 {
@@ -66,8 +67,25 @@ namespace EstiemPortal6.Controllers
             int pageSize = 10;
             //If page is null, page number is 1
             int pageNumber = (page ?? 1);
+
+            // News items have relative links.
+            // Replace relative links with absolute links
+            Regex rx = new Regex(@"src=""/[iI]nternal/");
+            foreach(var e in ev)
+            {
+               e.Description = rx.Replace(e.Description, new MatchEvaluator(ReplaceImageUrl));
+            }
+             
             return View(ev.ToPagedList(pageNumber, pageSize));
         }
+
+        //This should have a better place
+        static string ReplaceImageUrl(Match m)
+        {
+            string x = m.ToString();
+            return ("src=\"https://www.estiem.org/internal/");
+        }
+
 
 
         public ActionResult Participants(int eventid)
