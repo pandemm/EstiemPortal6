@@ -721,7 +721,6 @@
     <Content Include="Views\Home\_Search.cshtml" />
     <Content Include="Views\Stats\_LoggedInList.cshtml" />
     <Content Include="Views\Stats\McTools.cshtml" />
-    <Content Include="Views\Events\Index2.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Shared\_LeftBar.cshtml" />
     <Content Include="Views\Shared\_Carousel.cshtml" />

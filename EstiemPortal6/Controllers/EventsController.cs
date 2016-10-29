@@ -131,16 +131,17 @@ namespace EstiemPortal6.Controllers
             //                        }).FirstOrDefault();
 
             var pvm = new ParticipantsViewModel();
-
+            var evrepo = new EventRepository();
             pvm = (from m in db.EVENTS_Events
-                       where m.Id == eventid
-                       select new ParticipantsViewModel()
-                       {
-                           Vegetarian = null,
-                           EatPork = null,
-                           RequireVisa = null
-                         }).FirstOrDefault();
+                   where m.Id == eventid
+                   select new ParticipantsViewModel()
+                   {
+                       Vegetarian = null,
+                       EatPork = null,
+                       RequireVisa = null
+                   }).FirstOrDefault();
             pvm.UserId = Int32.Parse(User.Identity.GetUserId());
+            pvm.Event = evrepo.GetEventById(eventid);
 
 
             // If registration is not open currently, or registrationmode is not open to public
