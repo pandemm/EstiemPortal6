@@ -113,8 +113,9 @@ namespace EstiemPortal6.Controllers
             if (UserId == null)
                 return View();
             var db = new EstiemPortalContext();
+            // Gets the events you have been to excludng Council Meetings
             var evs = from m in db.EVENTS_Participants
-                      where m.UserId == UserId && m.RegistrationStatus == 0
+                      where m.UserId == UserId && m.RegistrationStatus == 0 && m.CmStatus==0
                       select m.EventID;
 
             var lgid = (from m in db.PORTAL_ESTIEMUser
