@@ -358,6 +358,7 @@
     <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\Facebook.cs" />
     <Compile Include="Models\FormQuestion.cs" />
+    <Compile Include="Models\FriendsModel.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LocalGroup.cs" />

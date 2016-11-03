@@ -6,6 +6,7 @@ using EstiemPortal6.ViewModels;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using EstiemPortal6.Models;
+using EstiemPortal6.Repositories;
 
 namespace EstiemPortal6.Controllers
 {
@@ -106,41 +107,13 @@ namespace EstiemPortal6.Controllers
         public ActionResult _FriendsList()
         {
 
-            //Todo Check performance of these queries
-            int? UserId = Int32.Parse(User.Identity.GetUserId());
+            // Get currently logged in Users ID
+            int? NullableId = Int32.Parse(User.Identity.GetUserId());
+            int UserId = NullableId ?? 0;
             // Currently you need to be logged in to accept every page, but later leave this
             // empty if user is not logged in
-            if (UserId == null)
-                return View();
-            var db = new EstiemPortalContext();
-            // Gets the events you have been to excludng Council Meetings
-            var evs = from m in db.EVENTS_Participants
-                      where m.UserId == UserId && m.RegistrationStatus == 0 && m.CmStatus==0
-                      select m.EventID;
+            var fvm = FriendsModel.GetFriendsForUser(UserId).Take(13);
 
-            var lgid = (from m in db.PORTAL_ESTIEMUser
-                           where m.UserId == UserId
-                           select m.LocalGroupId).FirstOrDefault();
-
-            var friends = from m in db.EVENTS_Participants
-                          where evs.Contains(m.EventID) && m.RegistrationStatus == 0
-                          select m.UserId;
-
-            // Fix getting the Local Group Id
-            var ownlg = from e in db.PORTAL_ESTIEMUser
-                        where e.LocalGroupId == lgid
-                        select e.UserId;
-
-            var fvm = (from m in db.EVENTS_Participants
-                      where friends.Contains(m.UserId) || ownlg.Contains(m.UserId)
-                      orderby m.RegistrationDate descending
-                      select new FriendsViewModel
-                      {
-                          Name = (from a in db.PORTAL_User where a.Id == m.UserId select a.UserName).FirstOrDefault(),
-                          UserId = m.UserId,
-                          EventName = m.EVENTS_Events.Name,
-                          EventId = m.EventID
-                      }).Take(15);
             return PartialView(fvm);
         }
 
