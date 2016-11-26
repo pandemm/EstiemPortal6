@@ -233,14 +233,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CM.cs" />
     <Compile Include="Controllers\CouncilMeetingController.cs" />
     <Compile Include="Controllers\LocalGroupController.cs" />
+    <Compile Include="Controllers\MarkovController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Controllers\VotingController.cs" />
     <Compile Include="Helpers\Tools.cs" />
     <Compile Include="Emails\EventEmails.cs" />
     <Compile Include="Models\CouncilMeetingModel.cs" />
+    <Compile Include="Models\CouncilMeeting_Questions.cs" />
     <Compile Include="Models\DAL\ALUMNI_Event.cs" />
     <Compile Include="Models\DAL\ALUMNI_EventParticipant.cs" />
     <Compile Include="ApplicationLog.cs" />
@@ -349,7 +353,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Markov.cs" />
+    <Compile Include="Models\Voting.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\DAL\NEWS_NewsCategories.cs" />
     <Compile Include="Models\ESTIEMMailProvider.cs" />
     <Compile Include="Models\Event.cs" />
@@ -414,6 +420,7 @@
     <Compile Include="ViewModels\LocalGroupViewModel.cs" />
     <Compile Include="ViewModels\ParticipantsViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\StatsViewModel.cs" />
     <Compile Include="ViewModels\TripAdvisorViewModel.cs" />
@@ -736,6 +743,14 @@
     <Content Include="Views\CouncilMeeting\Elections.cshtml" />
     <Content Include="Views\CouncilMeeting\FamilyList.cshtml" />
     <Content Include="Views\CouncilMeeting\Family.cshtml" />
+    <Content Include="Views\Profile\FacebookLogin.cshtml" />
+    <Content Include="Views\CouncilMeeting\Question.cshtml" />
+    <Content Include="Views\CouncilMeeting\AskQuestion.cshtml" />
+    <Content Include="Views\CouncilMeeting\_SingleQuestion.cshtml" />
+    <Content Include="Views\Markov\Index.cshtml" />
+    <Content Include="Views\Voting\Index.cshtml" />
+    <Content Include="Views\Voting\_VotingShort.cshtml" />
+    <Content Include="Views\Events\_FlightPrices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -751,6 +766,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
